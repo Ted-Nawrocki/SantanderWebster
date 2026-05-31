@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Santander / Webster Financial: Deal Brief</title>
+<meta name="description" content="An editorial brief on Banco Santander's $12.3 billion cash-and-stock acquisition of Webster Financial Corporation. Terms, strategic rationale, ADS conversion mechanics, and the path to close." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #EC0000;
+    --red-deep: #990000;
+    --red-mid: #CC0000;
+    --coral: #EA6F5D;
+    --sky: #DEEDF2;
+    --cream: #FBF1EA;
+    --sand: #F5DECF;
+    --black: #0a0a0a;
+    --ink: #131313;
+    --white: #FFFFFF;
+
+    --serif: "DM Serif Display", Georgia, serif;
+    --sans: "IBM Plex Sans", -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --maxw: 1180px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .grain {
+    position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+    opacity: 0.05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 30px; }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.04; letter-spacing: -0.015em; }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.3em;
+    text-transform: uppercase; display: inline-flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before { content: ""; width: 30px; height: 2px; background: currentColor; display: inline-block; }
+
+  /* ---- Nav ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(10, 10, 10, 0.66);
+    backdrop-filter: saturate(150%) blur(16px);
+    -webkit-backdrop-filter: saturate(150%) blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 15px 30px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { font-family: var(--mono); font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream); font-weight: 600; }
+  .brand b { color: var(--red); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245, 241, 234, 0.6); text-decoration: none; transition: color 0.25s ease; }
+  .nav-links a:hover { color: var(--red); }
+  @media (max-width: 880px) { .nav-links { display: none; } }
+
+  /* ---- Marquee ---- */
+  .marquee { background: var(--red); overflow: hidden; border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); padding: 13px 0; position: relative; z-index: 5; }
+  .marquee-track { display: inline-flex; white-space: nowrap; will-change: transform; animation: scroll-x 38s linear infinite; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-track .item { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); padding: 0 26px; display: inline-flex; align-items: center; gap: 26px; }
+  .marquee-track .item::after { content: ""; width: 7px; height: 7px; background: var(--black); display: inline-block; transform: rotate(45deg); }
+  @keyframes scroll-x { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ---- Hero ---- */
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 150px 0 90px; overflow: hidden; background: var(--black); }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 66px 66px;
+    -webkit-mask-image: radial-gradient(ellipse 78% 68% at 35% 40%, #000 0%, transparent 72%);
+    mask-image: radial-gradient(ellipse 78% 68% at 35% 40%, #000 0%, transparent 72%);
+  }
+  .hero-glow { position: absolute; top: -16%; left: 30%; width: 880px; height: 880px; background: radial-gradient(circle, rgba(236, 0, 0, 0.20) 0%, transparent 62%); pointer-events: none; }
+  .hero .wrap { position: relative; z-index: 2; }
+  .hero .eyebrow { color: var(--red); margin-bottom: 28px; }
+  .hero h1 { font-size: clamp(52px, 9vw, 132px); max-width: 14ch; margin-bottom: 30px; color: var(--cream); }
+  .hero h1 em { font-style: normal; color: var(--red); }
+  .hero-sub { font-size: clamp(16px, 2vw, 21px); color: rgba(245, 241, 234, 0.62); max-width: 56ch; }
+
+  .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 64px; border: 1px solid rgba(255, 255, 255, 0.12); }
+  .hero-stat { padding: 24px 22px; border-right: 1px solid rgba(255, 255, 255, 0.12); }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245, 241, 234, 0.42); margin-bottom: 12px; }
+  .hero-stat .v { font-family: var(--serif); font-size: clamp(24px, 3.2vw, 34px); color: var(--cream); line-height: 1.05; }
+  .hero-stat .v b { color: var(--red); font-weight: 400; }
+  @media (max-width: 780px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } .hero-stat:nth-child(2) { border-right: none; } .hero-stat:nth-child(1), .hero-stat:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.12); } }
+
+  /* ---- Section scaffolding ---- */
+  section.block { padding: 120px 0; position: relative; }
+  .sec-dark { background: var(--black); color: var(--cream); }
+  .sec-cream { background: var(--cream); color: var(--ink); }
+  .sec-red { background: var(--red); color: var(--black); }
+
+  .section-head { position: relative; margin-bottom: 60px; }
+  .sec-index { font-family: var(--serif); font-size: clamp(72px, 12vw, 150px); line-height: 0.8; position: absolute; right: 0; top: -18px; pointer-events: none; }
+  .sec-dark .sec-index { color: rgba(236, 0, 0, 0.16); }
+  .sec-cream .sec-index { color: rgba(236, 0, 0, 0.14); }
+  .sec-red .sec-index { color: rgba(255, 255, 255, 0.22); }
+  .section-head .eyebrow { margin-bottom: 22px; }
+  .sec-dark .section-head .eyebrow { color: var(--red); }
+  .sec-cream .section-head .eyebrow { color: var(--red); }
+  .sec-red .section-head .eyebrow { color: var(--white); }
+  .section-head h2 { font-size: clamp(34px, 5.4vw, 64px); max-width: 18ch; margin-bottom: 22px; }
+  .sec-red .section-head h2 { color: var(--white); }
+  .section-head p { max-width: 62ch; font-size: clamp(15px, 1.7vw, 18px); }
+  .sec-dark .section-head p { color: rgba(245, 241, 234, 0.64); }
+  .sec-cream .section-head p { color: rgba(19, 19, 19, 0.7); }
+  .sec-red .section-head p { color: rgba(10, 10, 10, 0.82); }
+
+  .accent-rule { height: 2px; margin-bottom: 58px; }
+  .sec-dark .accent-rule { background: linear-gradient(90deg, var(--red), transparent); }
+  .sec-cream .accent-rule { background: linear-gradient(90deg, var(--red), transparent); }
+  .sec-red .accent-rule { background: linear-gradient(90deg, var(--black), transparent); }
+
+  /* ---- Tickers ---- */
+  .tickers { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  @media (max-width: 740px) { .tickers { grid-template-columns: 1fr; } }
+  .ticker { background: var(--white); border: 2px solid var(--ink); padding: 30px; position: relative; box-shadow: 8px 8px 0 rgba(236, 0, 0, 0.14); }
+  .ticker .row1 { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px; }
+  .ticker .sym { font-family: var(--serif); font-size: 27px; color: var(--ink); }
+  .ticker .sym span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: rgba(19, 19, 19, 0.5); display: block; text-transform: uppercase; margin-top: 5px; }
+  .ticker .badge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 9px; border: 1px solid rgba(19, 19, 19, 0.25); color: rgba(19, 19, 19, 0.55); display: inline-flex; align-items: center; gap: 7px; }
+  .ticker .badge.live { color: var(--red); border-color: var(--red); }
+  .ticker .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .ticker .price { font-family: var(--mono); font-size: 42px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; color: var(--ink); }
+  .ticker .price .cur { font-size: 18px; color: rgba(19, 19, 19, 0.45); vertical-align: top; margin-right: 2px; }
+  .ticker .chg { font-family: var(--mono); font-size: 14px; margin-top: 14px; display: flex; gap: 16px; min-height: 18px; }
+  .ticker .chg .up { color: #0a8a3f; }
+  .ticker .chg .down { color: var(--red); }
+  .ticker .meta { font-family: var(--mono); font-size: 11px; color: rgba(19, 19, 19, 0.5); margin-top: 18px; letter-spacing: 0.03em; }
+  .market-note { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.03em; line-height: 1.75; margin-top: 24px; }
+  .sec-cream .market-note { color: rgba(19, 19, 19, 0.55); }
+  .sec-dark .market-note { color: rgba(245, 241, 234, 0.5); }
+  .sec-red .market-note { color: rgba(10, 10, 10, 0.7); }
+
+  sup.cite { font-family: var(--mono); font-size: 10px; }
+  sup.cite a { text-decoration: none; padding-left: 2px; font-weight: 600; }
+  .sec-dark sup.cite a, .sec-cream sup.cite a { color: var(--red); }
+  .sec-red sup.cite a { color: var(--white); }
+  sup.cite a:hover { text-decoration: underline; }
+
+  /* ---- Consideration viz ---- */
+  .viz-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 60px; align-items: start; }
+  @media (max-width: 900px) { .viz-grid { grid-template-columns: 1fr; gap: 44px; } }
+
+  .consid-bar { display: flex; height: 92px; border: 2px solid var(--cream); overflow: hidden; }
+  .consid-seg { position: relative; transition: filter 0.25s ease; display: flex; align-items: flex-end; }
+  .consid-seg.cash { background: var(--red); flex: 0 0 64.5%; }
+  .consid-seg.stock { background: rgba(245, 241, 234, 0.1); border-left: 2px solid var(--cream); flex: 0 0 35.5%; }
+  .consid-seg .seg-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; padding: 11px 13px; text-transform: uppercase; }
+  .consid-seg.cash .seg-label { color: var(--white); font-weight: 600; }
+  .consid-seg.stock .seg-label { color: var(--cream); }
+  .consid-seg.dim { filter: brightness(0.55); }
+  .consid-legend { display: flex; gap: 30px; margin-top: 22px; flex-wrap: wrap; }
+  .leg-item { display: flex; align-items: center; gap: 11px; cursor: pointer; }
+  .leg-swatch { width: 14px; height: 14px; flex: none; }
+  .leg-swatch.cash { background: var(--red); }
+  .leg-swatch.stock { background: rgba(245, 241, 234, 0.18); border: 1px solid var(--cream); }
+  .leg-text { font-family: var(--mono); font-size: 12px; color: rgba(245, 241, 234, 0.7); letter-spacing: 0.03em; }
+  .leg-text b { color: var(--cream); font-weight: 600; }
+  .consid-readout { margin-top: 32px; min-height: 92px; }
+  .consid-readout .ro-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 11px; }
+  .consid-readout .ro-v { font-family: var(--serif); font-size: 32px; line-height: 1.15; color: var(--cream); }
+  .consid-readout .ro-d { color: rgba(245, 241, 234, 0.6); font-size: 14px; margin-top: 8px; max-width: 50ch; }
+
+  .premium-stats { display: grid; gap: 0; border: 2px solid var(--cream); }
+  .pstat { padding: 26px 26px; display: flex; align-items: baseline; justify-content: space-between; gap: 18px; border-bottom: 1px solid rgba(245, 241, 234, 0.16); transition: background 0.25s ease; }
+  .pstat:last-child { border-bottom: none; }
+  .pstat:hover { background: rgba(236, 0, 0, 0.1); }
+  .pstat .pv { font-family: var(--serif); font-size: 44px; color: var(--red); flex: none; }
+  .pstat .pk { font-size: 14px; color: rgba(245, 241, 234, 0.66); text-align: right; }
+
+  /* ---- Synergy (graded reds) ---- */
+  .syn-wrap { max-width: 920px; }
+  .syn-bar { display: flex; height: 76px; border: 2px solid var(--ink); margin-bottom: 26px; overflow: hidden; }
+  .syn-seg { flex: 1; border-right: 2px solid var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; transition: transform 0.25s ease; cursor: pointer; }
+  .syn-seg:last-child { border-right: none; }
+  .syn-seg:nth-child(1) { background: var(--red-deep); }
+  .syn-seg:nth-child(2) { background: var(--red-mid); }
+  .syn-seg:nth-child(3) { background: var(--red); }
+  .syn-seg:hover { transform: scaleY(1.06); }
+  .syn-seg .pct { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--white); }
+  .syn-seg .amt { font-family: var(--mono); font-size: 11px; color: rgba(255, 255, 255, 0.78); letter-spacing: 0.05em; }
+  .syn-legend { display: grid; gap: 14px; }
+  .syn-li { display: flex; align-items: baseline; gap: 14px; font-size: 14.5px; color: rgba(19, 19, 19, 0.72); }
+  .syn-li .sq { width: 12px; height: 12px; flex: none; transform: translateY(2px); }
+  .syn-li b { color: var(--ink); font-weight: 600; }
+
+  .rate-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 2px solid var(--ink); margin-top: 44px; }
+  @media (max-width: 740px) { .rate-cards { grid-template-columns: 1fr; } }
+  .rcard { padding: 30px 26px; border-right: 1px solid rgba(19, 19, 19, 0.16); }
+  .rcard:last-child { border-right: none; }
+  .rcard .rk { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(19, 19, 19, 0.5); margin-bottom: 14px; }
+  .rcard .rv { font-family: var(--serif); font-size: 40px; color: var(--red); }
+  .rcard .rd { font-size: 13px; color: rgba(19, 19, 19, 0.62); margin-top: 8px; }
+
+  /* ---- Mechanics (red section) ---- */
+  .mech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: start; }
+  @media (max-width: 900px) { .mech-grid { grid-template-columns: 1fr; gap: 38px; } }
+  .mech-body p { color: rgba(10, 10, 10, 0.86); margin-bottom: 22px; font-size: 16px; line-height: 1.7; }
+  .mech-body p b { color: var(--black); font-weight: 600; }
+  .mech-flow { background: var(--black); border: 2px solid var(--black); padding: 36px; box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.18); }
+  .flow-eq { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 22px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.16); margin-bottom: 24px; flex-wrap: wrap; }
+  .flow-eq .chip { text-align: center; }
+  .flow-eq .chip .cn { font-family: var(--mono); font-size: 28px; font-weight: 600; color: var(--red); }
+  .flow-eq .chip .cl { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245, 241, 234, 0.55); margin-top: 7px; }
+  .flow-eq .op { font-family: var(--serif); font-size: 30px; color: rgba(245, 241, 234, 0.5); }
+  .mech-points { list-style: none; display: grid; gap: 17px; }
+  .mech-points li { display: flex; gap: 14px; font-size: 14px; color: rgba(245, 241, 234, 0.78); }
+  .mech-points li::before { content: ""; width: 7px; height: 7px; background: var(--red); flex: none; transform: translateY(7px); }
+
+  /* ---- Timeline ---- */
+  .timeline { position: relative; margin-left: 9px; }
+  .timeline::before { content: ""; position: absolute; left: 0; top: 7px; bottom: 7px; width: 2px; background: rgba(245, 241, 234, 0.16); }
+  .tl-item { position: relative; padding: 0 0 48px 42px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before { content: ""; position: absolute; left: -5px; top: 4px; width: 11px; height: 11px; background: var(--black); border: 2px solid var(--red); border-radius: 50%; }
+  .tl-item.done::before { background: var(--red); }
+  .tl-date { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 9px; }
+  .tl-item h3 { font-size: 24px; margin-bottom: 9px; color: var(--cream); }
+  .tl-item p { color: rgba(245, 241, 234, 0.64); font-size: 14.5px; max-width: 64ch; }
+
+  /* ---- Leadership ---- */
+  .lead-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 2px solid var(--ink); }
+  @media (max-width: 900px) { .lead-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .lead-grid { grid-template-columns: 1fr; } }
+  .lead { padding: 30px 28px; border-right: 1px solid rgba(19, 19, 19, 0.14); border-bottom: 1px solid rgba(19, 19, 19, 0.14); transition: background 0.25s ease; }
+  .lead:hover { background: rgba(236, 0, 0, 0.07); }
+  .lead .ln { font-family: var(--serif); font-size: 24px; margin-bottom: 11px; color: var(--ink); }
+  .lead .lr { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.05em; color: var(--red); line-height: 1.75; }
+  .lead-note { font-family: var(--mono); font-size: 12px; color: rgba(19, 19, 19, 0.55); margin-top: 28px; letter-spacing: 0.03em; line-height: 1.8; }
+
+  /* ---- Advisors ---- */
+  .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 780px) { .adv-grid { grid-template-columns: 1fr; } }
+  .adv { border: 1px solid rgba(245, 241, 234, 0.18); padding: 30px; transition: border-color 0.25s ease; }
+  .adv:hover { border-color: var(--red); }
+  .adv .af { font-family: var(--serif); font-size: 22px; margin-bottom: 13px; color: var(--cream); }
+  .adv .ar { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
+  .adv .as { font-size: 13.5px; color: rgba(245, 241, 234, 0.6); margin-top: 9px; }
+  .adv-note { font-family: var(--mono); font-size: 12px; color: rgba(245, 241, 234, 0.5); margin-top: 24px; letter-spacing: 0.03em; }
+
+  /* ---- Footer ---- */
+  footer { background: var(--red-deep); color: var(--cream); padding: 84px 0 60px; }
+  footer h3 { font-size: 13px; font-family: var(--mono); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); margin-bottom: 26px; }
+  .sources { list-style: none; display: grid; gap: 13px; margin-bottom: 50px; }
+  .sources li { font-size: 13px; color: rgba(251, 241, 234, 0.78); display: flex; gap: 12px; }
+  .sources li .num { font-family: var(--mono); color: var(--white); flex: none; font-weight: 600; }
+  .sources li a { color: rgba(251, 241, 234, 0.78); text-decoration: underline; text-decoration-color: rgba(255, 255, 255, 0.3); transition: color 0.2s ease; word-break: break-word; }
+  .sources li a:hover { color: var(--white); }
+  .disclaimer { font-size: 12.5px; color: rgba(251, 241, 234, 0.62); line-height: 1.8; max-width: 82ch; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 30px; margin-bottom: 36px; }
+  .colophon { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 30px; }
+  .colophon .by { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.05em; color: rgba(251, 241, 234, 0.85); }
+  .colophon .by a { color: var(--white); text-decoration: none; font-weight: 600; }
+  .colophon .by a:hover { text-decoration: underline; }
+  .colophon .tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(251, 241, 234, 0.5); }
+
+  /* ---- Reveal ---- */
+  .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+  .js .reveal.is-visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .marquee-track { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+  /* ---- Webster blue + new components ---- */
+  :root { --webster: #1565C0; }
+
+  /* Deposit ranking */
+  .rank-list { display: grid; gap: 0; border-top: 1px solid rgba(245, 241, 234, 0.16); }
+  .rank-row { display: grid; grid-template-columns: 36px 1fr; gap: 16px; align-items: center; padding: 13px 0; border-bottom: 1px solid rgba(245, 241, 234, 0.1); transition: background 0.2s ease; }
+  .rank-row:not(.combined):hover { background: rgba(245, 241, 234, 0.04); }
+  .rank-row .rk { font-family: var(--mono); font-size: 13px; color: rgba(245, 241, 234, 0.5); text-align: right; }
+  .rank-main { display: grid; gap: 7px; }
+  .rank-top { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
+  .rank-name { font-size: 14.5px; color: var(--cream); }
+  .rank-val { font-family: var(--mono); font-size: 13px; color: rgba(245, 241, 234, 0.66); white-space: nowrap; }
+  .rank-barwrap { height: 7px; background: rgba(245, 241, 234, 0.07); overflow: hidden; }
+  .rank-bar { height: 100%; width: 0; background: rgba(245, 241, 234, 0.34); transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1); }
+  .rank-divider { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245, 241, 234, 0.4); padding: 20px 0 8px; }
+  .rank-row.combined { background: var(--red); margin: 6px 0; padding: 18px 18px; border-bottom: none; box-shadow: 8px 8px 0 rgba(236, 0, 0, 0.16); }
+  .rank-row.combined .rk, .rank-row.combined .rank-val { color: var(--black); font-weight: 600; }
+  .rank-row.combined .rank-name { color: var(--black); font-family: var(--serif); font-size: 20px; font-weight: 400; }
+  .rank-row.combined .rank-barwrap { background: rgba(0, 0, 0, 0.18); }
+  .rank-row.combined .rank-bar { background: var(--black); }
+  .beforeafter { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 38px; padding-top: 32px; border-top: 1px solid rgba(245, 241, 234, 0.16); }
+  .ba-chip { border: 1px solid rgba(245, 241, 234, 0.2); padding: 16px 20px; }
+  .ba-chip .bk { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245, 241, 234, 0.5); margin-bottom: 8px; }
+  .ba-chip .bv { font-family: var(--serif); font-size: 23px; color: var(--cream); }
+  .ba-chip .bv span { font-size: 12px; color: rgba(245, 241, 234, 0.55); font-family: var(--mono); }
+  .ba-arrow { font-family: var(--serif); font-size: 26px; color: var(--red); }
+  .ba-chip.final { border-color: var(--red); }
+  .ba-chip.final .bv { color: var(--red); }
+
+  /* Vector map */
+  #branchMap { position: relative; height: 560px; width: 100%; border: 2px solid var(--ink); background: #d9d2c4; overflow: hidden; }
+  #branchMap svg { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+  #branchMap svg:active { cursor: grabbing; }
+  .state { fill: var(--linen); stroke: rgba(19, 19, 19, 0.24); stroke-width: 0.8; stroke-linejoin: round; vector-effect: non-scaling-stroke; transition: fill 0.18s ease; }
+  .state:hover { fill: #fffdf8; }
+  .stlabel { font-family: var(--mono); font-size: 11px; fill: rgba(19, 19, 19, 0.34); text-anchor: middle; pointer-events: none; letter-spacing: 0.05em; }
+  .mappin { cursor: pointer; }
+  .mappin circle { stroke: #fff; stroke-width: 2; vector-effect: non-scaling-stroke; transition: r 0.12s ease; }
+  .mappin.hq circle { stroke-width: 3; }
+  .mappin.san circle:not(.hqdot) { fill: var(--red); }
+  .mappin.wbs circle:not(.hqdot) { fill: var(--webster); }
+  .mappin .hqdot { fill: #fff; stroke: none; }
+  .mappin:hover circle:not(.hqdot), .mappin:focus circle:not(.hqdot) { r: 9; }
+  .mappin:focus { outline: none; }
+  .map-ctrl { position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; gap: 6px; z-index: 4; }
+  .map-ctrl button { width: 34px; height: 34px; border: 1px solid var(--ink); background: rgba(245, 241, 234, 0.92); color: var(--ink); font-family: var(--mono); font-size: 17px; line-height: 1; cursor: pointer; padding: 0; transition: background 0.15s ease, color 0.15s ease; }
+  .map-ctrl button:hover { background: var(--red); color: #fff; border-color: var(--red); }
+  .map-tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--cream); font-family: var(--mono); font-size: 11px; padding: 8px 11px; border: 1px solid var(--red); transform: translate(-50%, calc(-100% - 12px)); white-space: nowrap; opacity: 0; transition: opacity 0.12s ease; z-index: 5; letter-spacing: 0.03em; }
+  .map-tip.show { opacity: 1; }
+  .map-tip .tt { font-family: var(--serif); font-size: 13.5px; display: block; margin-bottom: 2px; letter-spacing: 0; }
+  .map-legend { display: flex; gap: 28px; margin-top: 22px; flex-wrap: wrap; align-items: center; }
+  .ml-item { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: rgba(19, 19, 19, 0.72); }
+  .ml-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25); }
+  .ml-dot.san { background: var(--red); }
+  .ml-dot.wbs { background: var(--webster); }
+
+  /* Executive bios */
+  .bio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  @media (max-width: 820px) { .bio-grid { grid-template-columns: 1fr; } }
+  .bio-card { display: grid; grid-template-columns: 88px 1fr; gap: 22px; border: 1px solid rgba(245, 241, 234, 0.16); padding: 26px; transition: border-color 0.25s ease; }
+  .bio-card:hover { border-color: var(--red); }
+  @media (max-width: 460px) { .bio-card { grid-template-columns: 1fr; } }
+  .bio-portrait { width: 88px; height: 88px; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 30px; color: var(--cream); background: linear-gradient(145deg, var(--red-deep), var(--red)); border: 2px solid rgba(245, 241, 234, 0.22); overflow: hidden; }
+  .bio-portrait.wbs { background: linear-gradient(145deg, #0d4a8f, var(--webster)); }
+  .bio-portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .bio-tag { display: inline-block; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 8px; margin-bottom: 11px; border: 1px solid rgba(245, 241, 234, 0.22); color: rgba(245, 241, 234, 0.55); }
+  .bio-tag.san { border-color: rgba(236, 0, 0, 0.55); color: var(--red); }
+  .bio-tag.wbs { border-color: rgba(21, 101, 192, 0.6); color: #6ba8e0; }
+  .bio-name { font-family: var(--serif); font-size: 23px; color: var(--cream); margin-bottom: 5px; }
+  .bio-name a { color: var(--cream); text-decoration: none; }
+  .bio-name a:hover { color: var(--red); text-decoration: underline; }
+  .bio-role { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--red); line-height: 1.55; margin-bottom: 13px; }
+  .bio-text { font-size: 13.5px; color: rgba(245, 241, 234, 0.66); line-height: 1.65; }
+
+  /* Advisors on cream */
+  .sec-cream .adv { border-color: rgba(19, 19, 19, 0.18); }
+  .sec-cream .adv:hover { border-color: var(--red); }
+  .sec-cream .adv .af { color: var(--ink); }
+  .sec-cream .adv .as { color: rgba(19, 19, 19, 0.62); }
+  .sec-cream .adv-note { color: rgba(19, 19, 19, 0.55); }
+  .adv-group-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin: 0 0 18px; }
+  .adv-group-label.second { margin-top: 44px; }
+
+  /* Video hero */
+  .hero { background: var(--black) url(assets/santander-webster-poster.jpg) center/cover no-repeat; }
+  .hero-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; pointer-events:none; }
+  .hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; background:linear-gradient(135deg,rgba(10,10,10,0.88) 0%,rgba(80,0,0,0.52) 52%,rgba(10,10,10,0.82) 100%); pointer-events:none; }
+  .hero-grid, .hero-glow { z-index:2; }
+  @media (prefers-reduced-motion:reduce),(max-width:480px) { .hero-video { display:none; } }
+  .status-badges { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
+  .sbadge { font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border:1px solid rgba(245,241,234,0.22); color:rgba(245,241,234,0.5); white-space:nowrap; }
+  .sbadge.done { border-color:rgba(236,0,0,0.6); color:var(--red); }
+  .sbadge.pending { border-color:rgba(245,241,234,0.38); color:rgba(245,241,234,0.75); }
+  .seq-flow { display:grid; gap:0; border-top:1px solid rgba(19,19,19,0.14); }
+  .seq-step { display:grid; grid-template-columns:56px 1fr; gap:22px; align-items:start; padding:26px 0; border-bottom:1px solid rgba(19,19,19,0.1); }
+  .seq-step.last { border-bottom:none; }
+  .seq-num { font-family:var(--serif); font-size:38px; color:var(--red); opacity:0.55; line-height:1; padding-top:2px; }
+  .seq-title { font-family:var(--sans); font-size:16.5px; font-weight:600; color:var(--ink); margin-bottom:7px; }
+  .seq-text { font-size:14.5px; color:rgba(19,19,19,0.68); line-height:1.65; max-width:70ch; }
+  .ops-callout { border-left:4px solid var(--red); padding:22px 26px; background:rgba(236,0,0,0.05); margin-top:40px; }
+  .ops-label { font-family:var(--mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); margin-bottom:11px; }
+  .ops-callout p { font-size:15px; line-height:1.7; color:rgba(19,19,19,0.72); max-width:72ch; }
+  .sec-dark .lead-note { color:rgba(245,241,234,0.55); }
+  /* Map toggle */
+  .map-toggle { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+  .mt-btn { font-family:var(--mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; padding:6px 16px; border:1px solid rgba(19,19,19,0.25); background:transparent; color:rgba(19,19,19,0.6); cursor:pointer; transition:all 0.18s; }
+  .mt-btn:hover { border-color:var(--red); color:var(--red); }
+  .mt-btn.active { background:var(--ink); color:var(--linen); border-color:var(--ink); }
+  .mt-btn[data-bank="san"].active { background:var(--red); border-color:var(--red); }
+  .mt-btn[data-bank="wbs"].active { background:var(--webster); border-color:var(--webster); }
+  .map-loading { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; z-index:10; pointer-events:none; }
+  .ml-spin { width:32px; height:32px; border:3px solid rgba(19,19,19,0.12); border-top-color:var(--red); border-radius:50%; animation:mapSpin 0.8s linear infinite; margin:0 auto 12px; }
+  @keyframes mapSpin { to { transform:rotate(360deg); } }
+  .ml-text { font-family:var(--mono); font-size:11px; color:rgba(19,19,19,0.5); letter-spacing:0.06em; }
+  .branches-san .mappin circle { fill:var(--red); opacity:0.72; stroke:#fff; stroke-width:0.8; vector-effect:non-scaling-stroke; }
+  .branches-wbs .mappin circle { fill:var(--webster); opacity:0.72; stroke:#fff; stroke-width:0.8; vector-effect:non-scaling-stroke; }
+  .branches-san .mappin:hover circle,.branches-san .mappin:focus circle,
+  .branches-wbs .mappin:hover circle,.branches-wbs .mappin:focus circle { opacity:1; }
+  /* Branch history section */
+  .bh-chart-wrap { position:relative; height:340px; border:1px solid rgba(245,241,234,0.14); overflow:hidden; }
+  .bh-loading { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; z-index:5; pointer-events:none; }
+  .bh-chart-title { font-family:var(--serif); font-size:20px; color:var(--cream); margin-bottom:5px; }
+  .bh-chart-sub { font-family:var(--mono); font-size:11px; color:rgba(245,241,234,0.44); letter-spacing:0.04em; margin-bottom:18px; }
+  .bh-table-wrap { margin-top:28px; overflow-x:auto; }
+  .bh-table { border-collapse:collapse; font-family:var(--mono); font-size:13px; }
+  .bh-table th { text-align:left; padding:9px 24px 9px 0; border-bottom:1px solid rgba(245,241,234,0.2); color:rgba(245,241,234,0.44); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; white-space:nowrap; }
+  .bh-table td { padding:8px 24px 8px 0; border-bottom:1px solid rgba(245,241,234,0.08); color:var(--cream); }
+  .bh-table td:nth-child(2) { color:var(--red); font-weight:500; }
+  .bh-table td:nth-child(3) { color:#5b9bd5; font-weight:500; }
+  .bh-table tr:hover td { background:rgba(245,241,234,0.03); }
+  .bh-loading-row { text-align:left; color:rgba(245,241,234,0.35); padding:10px 0 !important; }
+  .bh-callouts { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:40px; padding-top:32px; border-top:1px solid rgba(245,241,234,0.14); }
+  @media (max-width:820px) { .bh-callouts { grid-template-columns:1fr; } }
+  .bh-callout { border:1px solid rgba(245,241,234,0.16); padding:22px 20px; }
+  .bh-callout.san { border-top:3px solid var(--red); }
+  .bh-callout.wbs { border-top:3px solid #5b9bd5; }
+  .bh-callout.deal { border-top:3px solid rgba(245,241,234,0.32); }
+  .bh-callout p { font-size:14px; color:rgba(245,241,234,0.68); line-height:1.65; margin-top:10px; }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">SAN <b>/</b> WBS &nbsp;DEAL BRIEF</div>
+    <div class="nav-links">
+      <a href="#terms">Terms</a>
+      <a href="#rationale">Rationale</a>
+      <a href="#mechanics">Mechanics</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#leadership">Leadership</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <video class="hero-video" autoplay loop muted playsinline poster="assets/santander-webster-poster.jpg" aria-hidden="true"><source src="assets/santander-webster-hero.mp4" type="video/mp4"></video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="status-badges">
+      <span class="sbadge done">Announced Feb 3, 2026</span>
+      <span class="sbadge done">Santander AGM: Mar 27, 2026</span>
+      <span class="sbadge done">Webster vote: May 26, 2026</span>
+      <span class="sbadge pending">Regulatory approvals pending</span>
+      <span class="sbadge">Close: H2 2026</span>
+    </div>
+        <div class="eyebrow reveal">Cross-Border Bank M&amp;A &nbsp;&middot;&nbsp; Announced February 3, 2026</div>
+    <h1 class="reveal">Santander Acquires <em>Webster Financial</em></h1>
+    <p class="hero-sub reveal">A $12.3 billion cash-and-stock combination that positions Banco Santander among the top-ten U.S. retail and commercial banks by assets, and a top-five deposit franchise in the Northeast.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+    <div class="hero-stats reveal">
+      <div class="hero-stat">
+        <div class="k">Aggregate Value</div>
+        <div class="v"><b class="count" data-count-to="12.3" data-decimals="1" data-prefix="$" data-suffix="B">$0.0B</b></div>
+      </div>
+      <div class="hero-stat">
+        <div class="k">Per Webster Share</div>
+        <div class="v"><span class="count" data-count-to="75.59" data-decimals="2" data-prefix="$">$0.00</span></div>
+      </div>
+      <div class="hero-stat">
+        <div class="k">Consideration</div>
+        <div class="v">2.0548 ADS<br>+ $48.75 cash</div>
+      </div>
+      <div class="hero-stat">
+        <div class="k">Expected Close</div>
+        <div class="v">H2 2026</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="item">Banco Santander acquires Webster Financial</span>
+    <span class="item">$12.3 Billion</span>
+    <span class="item">Cash and Stock</span>
+    <span class="item">2.0548 ADS + $48.75 per share</span>
+    <span class="item">Top-Five Northeast Deposit Franchise</span>
+    <span class="item">Expected Close H2 2026</span>
+    <span class="item">NYSE: SAN</span>
+    <span class="item">NYSE: WBS</span>
+    <span class="item">Banco Santander acquires Webster Financial</span>
+    <span class="item">$12.3 Billion</span>
+    <span class="item">Cash and Stock</span>
+    <span class="item">2.0548 ADS + $48.75 per share</span>
+    <span class="item">Top-Five Northeast Deposit Franchise</span>
+    <span class="item">Expected Close H2 2026</span>
+    <span class="item">NYSE: SAN</span>
+    <span class="item">NYSE: WBS</span>
+  </div>
+</div>
+
+<!-- Market data -->
+<section class="block sec-cream" id="market">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="sec-index">01</div>
+      <div class="eyebrow">Market Data</div>
+      <h2>SAN and WBS, Market Reference</h2>
+      <p>Values shown are announcement-day reference prices derived from the February 2, 2026 market close, which formed the basis for the agreed consideration. For current market prices, see Santander investor relations or the NYSE.</p>
+    </div>
+    <div class="tickers reveal">
+      <div class="ticker" id="t-san">
+        <div class="row1">
+          <div class="sym">SAN <span>Banco Santander &middot; NYSE ADS</span></div>
+          <div class="badge" data-badge><span class="dot"></span><span data-badgetext>Reference</span></div>
+        </div>
+        <div class="price" data-price><span class="cur">$</span><span data-pricenum>13.06</span></div>
+        <div class="chg" data-chg></div>
+        <div class="meta" data-meta>Implied ADS &middot; Feb 2, 2026</div>
+      </div>
+      <div class="ticker" id="t-wbs">
+        <div class="row1">
+          <div class="sym">WBS <span>Webster Financial &middot; NYSE</span></div>
+          <div class="badge" data-badge><span class="dot"></span><span data-badgetext>Reference</span></div>
+        </div>
+        <div class="price" data-price><span class="cur">$</span><span data-pricenum>75.59</span></div>
+        <div class="chg" data-chg></div>
+        <div class="meta" data-meta>Agreed per-share consideration &middot; Feb 2, 2026</div>
+      </div>
+    </div>
+    <p class="market-note">Prices shown are announcement-day reference values derived from the February 2, 2026 market close, which formed the basis for the agreed consideration. Santander ADS at $13.06 represents the implied ADS value within the stock leg of the consideration. Webster at $75.59 is the agreed per-share value. These are not live market prices.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+  </div>
+</section>
+
+<!-- Terms -->
+<section class="block sec-dark" id="terms">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="sec-index">02</div>
+      <div class="eyebrow">The Terms</div>
+      <h2>What Webster Stockholders Receive</h2>
+      <p>Each Webster common share converts into a fixed mix of cash and Santander stock. Based on Santander's closing price on February 2, 2026, the package was valued at $75.59 per share.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+    </div>
+    <div class="accent-rule reveal"></div>
+    <div class="viz-grid">
+      <div class="reveal">
+        <div class="consid-bar" id="considBar">
+          <div class="consid-seg cash" data-seg="cash"><span class="seg-label">$48.75 Cash</span></div>
+          <div class="consid-seg stock" data-seg="stock"><span class="seg-label">2.0548 ADS</span></div>
+        </div>
+        <div class="consid-legend">
+          <div class="leg-item" data-leg="cash">
+            <span class="leg-swatch cash"></span>
+            <span class="leg-text"><b>Cash</b> &middot; $48.75 &middot; 64.5%</span>
+          </div>
+          <div class="leg-item" data-leg="stock">
+            <span class="leg-swatch stock"></span>
+            <span class="leg-text"><b>Stock</b> &middot; 2.0548 ADS &middot; 35.5%</span>
+          </div>
+        </div>
+        <div class="consid-readout" id="considReadout">
+          <div class="ro-k">Total Consideration</div>
+          <div class="ro-v">$75.59 <span style="font-size:16px;color:rgba(245,241,234,0.6)">per share</span></div>
+          <div class="ro-d">Hover or tap a segment for the cash and stock detail. The cash amount is fixed; the stock leg is a fixed exchange ratio, so its dollar value moves with Santander's ADS price.</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="premium-stats">
+          <div class="pstat">
+            <span class="pv"><span class="count" data-count-to="16" data-suffix="%">0%</span></span>
+            <span class="pk">Premium to Webster's 10-day volume-weighted average price</span>
+          </div>
+          <div class="pstat">
+            <span class="pv"><span class="count" data-count-to="9" data-suffix="%">0%</span></span>
+            <span class="pk">Premium to Webster's all-time high closing price</span>
+          </div>
+          <div class="pstat">
+            <span class="pv"><span class="count" data-count-to="2.0" data-decimals="1" data-suffix="x">0.0x</span></span>
+            <span class="pk">More than 2.0x Webster's Q4 2025 period-end tangible book value per share</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Rationale -->
+<section class="block sec-cream" id="rationale">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="sec-index">03</div>
+      <div class="eyebrow">The Rationale</div>
+      <h2>Scale, Profitability, a Northeast Footprint</h2>
+      <p>For Santander, the deal fills in its retail branch network and expands its commercial franchise, particularly in Connecticut. Management has framed it as strategically significant for the US business while remaining a bolt-on for the Group, with shareholder distribution commitments preserved including the &euro;5 billion buyback launched the same day.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup><sup class="cite"><a href="https://www.santander.com/en/press-room/press-releases/2026/02/santander-acquires-webster-bank" target="_blank" rel="noopener">2</a></sup></p>
+    </div>
+    <div class="accent-rule reveal"></div>
+
+    <div class="syn-wrap reveal">
+      <div class="eyebrow" style="color:var(--red);margin-bottom:26px">Cost Synergy Composition</div>
+      <div class="syn-bar" id="synBar">
+        <div class="syn-seg" data-syn="ops"><span class="pct">~33%</span><span class="amt">~$267M</span></div>
+        <div class="syn-seg" data-syn="office"><span class="pct">~33%</span><span class="amt">~$267M</span></div>
+        <div class="syn-seg" data-syn="overlap"><span class="pct">~33%</span><span class="amt">~$267M</span></div>
+      </div>
+      <div class="syn-legend">
+        <div class="syn-li"><span class="sq" style="background:var(--red-deep)"></span><span><b>Technology and operations</b> &middot; about one third of savings</span></div>
+        <div class="syn-li"><span class="sq" style="background:var(--red-mid)"></span><span><b>Office consolidations</b> &middot; about one third of savings</span></div>
+        <div class="syn-li"><span class="sq" style="background:var(--red)"></span><span><b>Retail and commercial overlap</b> &middot; about one third of savings</span></div>
+      </div>
+      <p class="market-note" style="margin-top:24px">Santander projects approximately $800 million in annual cost savings, around 19% of the combined cost base, split into three roughly equal parts.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/0000801337/000114036126016415/ny20070640x1_defm14a.htm" target="_blank" rel="noopener">3</a></sup><sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/0000801337/000095010326001584/dp241066_425-onepager.htm" target="_blank" rel="noopener">4</a></sup></p>
+    </div>
+
+    <div class="rate-cards reveal">
+      <div class="rcard">
+        <div class="rk">Cost Synergies</div>
+        <div class="rv"><span class="count" data-count-to="800" data-prefix="~$" data-suffix="M">~$0M</span></div>
+        <div class="rd">Projected annual run-rate savings.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/0000801337/000114036126016415/ny20070640x1_defm14a.htm" target="_blank" rel="noopener">3</a></sup></div>
+      </div>
+      <div class="rcard">
+        <div class="rk">EPS Accretion</div>
+        <div class="rv">7-8%</div>
+        <div class="rd">Projected earnings accretion for Santander.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/0000801337/000114036126016415/ny20070640x1_defm14a.htm" target="_blank" rel="noopener">3</a></sup></div>
+      </div>
+      <div class="rcard">
+        <div class="rk">Return on Invested Capital</div>
+        <div class="rv"><span class="count" data-count-to="15" data-prefix="~" data-suffix="%">~0%</span></div>
+        <div class="rd">Projected on the transaction.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/0000801337/000114036126016415/ny20070640x1_defm14a.htm" target="_blank" rel="noopener">3</a></sup></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Deposit Ranking -->
+<section class="block sec-dark" id="ranking">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="sec-index">04</div>
+      <div class="eyebrow">Deposit Scale</div>
+      <h2>Where the Combined Bank Ranks</h2>
+      <p>By total domestic deposits, Santander Bank, N.A. and Webster Bank, N.A. are mid-table nationally. Combined, roughly $146.6 billion would rank about 25th, just outside the top 20. The deal's top-ten claim is measured by assets and the top-five claim is Northeast regional deposit share, so the figures describe different things.<sup class="cite"><a href="https://www.mx.com/blog/biggest-us-banks-by-deposits/" target="_blank" rel="noopener">11</a></sup></p>
+    </div>
+    <div class="accent-rule reveal"></div>
+    <div class="reveal">
+      <div class="eyebrow" style="color:var(--red);margin-bottom:8px">Top 20 U.S. Banks by Domestic Deposits</div>
+      <p class="market-note" style="margin-bottom:26px">FDIC reported data as of March 31, 2025.<sup class="cite"><a href="https://www.mx.com/blog/biggest-us-banks-by-deposits/" target="_blank" rel="noopener">11</a></sup></p>
+      <div class="rank-list" id="rankList">
+        <div class="rank-row"><div class="rk">1</div><div class="rank-main"><div class="rank-top"><span class="rank-name">JPMorgan Chase Bank</span><span class="rank-val">$2.10T</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="100"></div></div></div></div>
+        <div class="rank-row"><div class="rk">2</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Bank of America</span><span class="rank-val">$1.94T</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="92.6"></div></div></div></div>
+        <div class="rank-row"><div class="rk">3</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Wells Fargo Bank</span><span class="rank-val">$1.41T</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="67.4"></div></div></div></div>
+        <div class="rank-row"><div class="rk">4</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Citibank</span><span class="rank-val">$773.0B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="36.9"></div></div></div></div>
+        <div class="rank-row"><div class="rk">5</div><div class="rank-main"><div class="rank-top"><span class="rank-name">U.S. Bank</span><span class="rank-val">$516.6B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="24.6"></div></div></div></div>
+        <div class="rank-row"><div class="rk">6</div><div class="rank-main"><div class="rank-top"><span class="rank-name">PNC Bank</span><span class="rank-val">$429.0B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="20.5"></div></div></div></div>
+        <div class="rank-row"><div class="rk">7</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Truist Bank</span><span class="rank-val">$413.8B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="19.7"></div></div></div></div>
+        <div class="rank-row"><div class="rk">8</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Capital One</span><span class="rank-val">$388.6B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="18.5"></div></div></div></div>
+        <div class="rank-row"><div class="rk">9</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Goldman Sachs Bank USA</span><span class="rank-val">$386.9B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="18.4"></div></div></div></div>
+        <div class="rank-row"><div class="rk">10</div><div class="rank-main"><div class="rank-top"><span class="rank-name">TD Bank</span><span class="rank-val">$295.4B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="14.1"></div></div></div></div>
+        <div class="rank-row"><div class="rk">11</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Charles Schwab Bank</span><span class="rank-val">$219.9B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="10.5"></div></div></div></div>
+        <div class="rank-row"><div class="rk">12</div><div class="rank-main"><div class="rank-top"><span class="rank-name">State Street</span><span class="rank-val">$204.4B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="9.8"></div></div></div></div>
+        <div class="rank-row"><div class="rk">13</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Morgan Stanley Private Bank</span><span class="rank-val">$203.6B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="9.7"></div></div></div></div>
+        <div class="rank-row"><div class="rk">14</div><div class="rank-main"><div class="rank-top"><span class="rank-name">BNY Mellon</span><span class="rank-val">$202.8B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="9.67"></div></div></div></div>
+        <div class="rank-row"><div class="rk">15</div><div class="rank-main"><div class="rank-top"><span class="rank-name">BMO Bank</span><span class="rank-val">$202.6B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="9.66"></div></div></div></div>
+        <div class="rank-row"><div class="rk">16</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Morgan Stanley Bank</span><span class="rank-val">$187.1B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="8.9"></div></div></div></div>
+        <div class="rank-row"><div class="rk">17</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Citizens Bank</span><span class="rank-val">$181.4B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="8.65"></div></div></div></div>
+        <div class="rank-row"><div class="rk">18</div><div class="rank-main"><div class="rank-top"><span class="rank-name">The Huntington National Bank</span><span class="rank-val">$169.6B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="8.09"></div></div></div></div>
+        <div class="rank-row"><div class="rk">19</div><div class="rank-main"><div class="rank-top"><span class="rank-name">M&amp;T (Manufacturers and Traders Trust)</span><span class="rank-val">$169.3B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="8.07"></div></div></div></div>
+        <div class="rank-row"><div class="rk">20</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Fifth Third Bank</span><span class="rank-val">$168.9B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="8.05"></div></div></div></div>
+        <div class="rank-divider">Pro forma combined &middot; approximate national rank 25</div>
+        <div class="rank-row combined"><div class="rk">~25</div><div class="rank-main"><div class="rank-top"><span class="rank-name">Santander + Webster</span><span class="rank-val">~$146.6B</span></div><div class="rank-barwrap"><div class="rank-bar" data-w="7.0"></div></div></div></div>
+      </div>
+      <p class="market-note" style="margin-top:18px">For context, the combined total sits between Ally Bank at rank 24 ($155.3 billion) and Regions Bank at the former rank 25 ($133.0 billion).<sup class="cite"><a href="https://www.mx.com/blog/biggest-us-banks-by-deposits/" target="_blank" rel="noopener">11</a></sup></p>
+      <div class="beforeafter">
+        <div class="ba-chip"><div class="bk">Santander Bank, N.A.</div><div class="bv">$80.8B <span>rank 31</span></div></div>
+        <div class="ba-arrow">+</div>
+        <div class="ba-chip"><div class="bk">Webster Bank, N.A.</div><div class="bv">$65.8B <span>rank 36</span></div></div>
+        <div class="ba-arrow">&rarr;</div>
+        <div class="ba-chip final"><div class="bk">Pro forma combined</div><div class="bv">$146.6B <span>rank ~25</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Branch Network History -->
+<section class="block sec-dark" id="branch-history">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="sec-index">05</div>
+      <div class="eyebrow">Strategic Context</div>
+      <h2>The Footprint Story Behind the Deal</h2>
+      <p>The Webster acquisition should be viewed against a decade of branch network reshaping at both companies. Santander's U.S. branch network is materially smaller today than it was during the Sovereign Bank era, when Santander described a network of more than 670 branches and nearly 2,000 ATMs. Webster, meanwhile, reduced its banking center count through 2021 before expanding meaningfully through the Sterling merger in 2022. The result is a transaction that is not just about assets, deposits, and EPS accretion. It is also about rebuilding Northeast density after years of branch rationalization on both sides.<sup class="cite"><a href="https://banks.data.fdic.gov/bankfind-suite/SOD/branchOffice" target="_blank" rel="noopener">18</a></sup></p>
+    </div>
+    <div class="accent-rule reveal"></div>
+    <div class="reveal">
+      <div class="bh-chart-title">Santander and Webster Branch Counts, 2016&ndash;2025</div>
+      <div class="bh-chart-sub">FDIC Summary of Deposits &middot; all domestic offices &middot; June 30 annual snapshots &middot; Live from FDIC BankFind API</div>
+      <div class="bh-chart-wrap" id="branchChart">
+        <div class="bh-loading" id="branchLoading">
+          <div class="ml-spin"></div>
+          <div class="ml-text">Loading FDIC branch data&hellip;</div>
+        </div>
+      </div>
+      <div class="bh-table-wrap">
+        <table class="bh-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Santander Bank, N.A.</th>
+              <th>Webster Bank, N.A.</th>
+            </tr>
+          </thead>
+          <tbody id="branchTableBody">
+            <tr><td colspan="3" class="bh-loading-row">Loading&hellip;</td></tr>
+          </tbody>
+        </table>
+        <p class="market-note" style="margin-top:14px">Source: FDIC Summary of Deposits, FDIC Certificate 29950 (Santander Bank, N.A.) and FDIC Certificate 18221 (Webster Bank, National Association). Branch counts include all FDIC-reported domestic office types. Santander's network reflects the rationalized successor to the former Sovereign Bank franchise acquired in 2009. Webster's 2022 increase reflects the completion of the Sterling Bancorp merger in January 2022. Data loaded live from the FDIC BankFind API.<sup class="cite"><a href="https://banks.data.fdic.gov/bankfind-suite/SOD/branchOffice" target="_blank" rel="noopener">18</a></sup></p>
+      </div>
+    </div>
+    <div class="bh-callouts reveal">
+      <div class="bh-callout san">
+        <div class="ops-label" style="color:var(--red)">Santander</div>
+        <p>The large Sovereign-era branch footprint has been materially reduced over the past decade. Santander entered the period with more than 600 domestic offices and rationalized that network significantly through branch closures and consolidations.</p>
+      </div>
+      <div class="bh-callout wbs">
+        <div class="ops-label" style="color:#5b9bd5">Webster</div>
+        <p>Webster pruned its banking center network through 2021, then expanded meaningfully through the Sterling Bancorp merger in 2022. That transaction added New York metro density, commercial banking scale, and new geographic reach.</p>
+      </div>
+      <div class="bh-callout deal">
+        <div class="ops-label">The deal thesis</div>
+        <p>Santander is not simply buying Webster to get larger. It is buying a reshaped Northeast branch, deposit, and commercial banking platform after years of network rationalization, using Webster to rebuild physical density in the region.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mechanics -->
+<section class="block sec-red" id="mechanics">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="sec-index">06</div>
+      <div class="eyebrow">Corporate Actions Mechanics</div>
+      <h2>How the ADS Consideration Gets Delivered</h2>
+      <p>The stock portion of the consideration is the operationally interesting part. It is a fixed exchange ratio rather than a fixed dollar value, and it is paid in newly issued depositary shares.</p>
+    </div>
+    <div class="accent-rule reveal"></div>
+    <div class="mech-grid">
+      <div class="mech-body reveal">
+        <p>Each Webster share converts into <b>2.0548 Santander American Depositary Shares</b>, and each ADS represents <b>one Santander ordinary share</b>.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup><sup class="cite"><a href="https://www.businesswire.com/news/home/20210923005357/en/Citi-Appointed-as-Successor-Depositary-Bank-for-Banco-Santander-S.A.%E2%80%99s-ADR-Programme" target="_blank" rel="noopener">5</a></sup> <b>Citibank N.A.</b> has acted as depositary for Santander's ADR program since 2021, replacing J.P. Morgan in that role.<sup class="cite"><a href="https://www.businesswire.com/news/home/20210923005357/en/Citi-Appointed-as-Successor-Depositary-Bank-for-Banco-Santander-S.A.%E2%80%99s-ADR-Programme" target="_blank" rel="noopener">5</a></sup><sup class="cite"><a href="https://www.santander.com/en/shareholders-and-investors/general-information" target="_blank" rel="noopener">6</a></sup></p>
+        <p>To deliver the stock leg, Santander issues additional ordinary shares. Those shares are deposited and represented by newly issued ADSs distributed to former Webster holders. The issuance of new ordinary shares and corresponding ADSs is a stated dilution factor in the deal disclosures.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+        <p>Because <b>2.0548 is not a whole number</b>, most positions produce fractional ADS entitlements. Under standard practice, the exchange agent aggregates the fractions, sells them in the market, and distributes cash in lieu of fractional ADSs. The Form F-4 registration statement and the proxy statement and prospectus govern the exact treatment.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+      </div>
+      <div class="mech-flow reveal">
+        <div class="flow-eq">
+          <div class="chip"><div class="cn">1</div><div class="cl">Webster Share</div></div>
+          <div class="op">&rarr;</div>
+          <div class="chip"><div class="cn">2.0548</div><div class="cl">Santander ADS</div></div>
+        </div>
+        <div class="flow-eq" style="border-bottom:none;margin-bottom:0">
+          <div class="chip"><div class="cn">1</div><div class="cl">ADS</div></div>
+          <div class="op">=</div>
+          <div class="chip"><div class="cn">1</div><div class="cl">Ordinary Share</div></div>
+        </div>
+        <ul class="mech-points" style="margin-top:30px">
+          <li>Structure: reincorporation merger, then statutory share exchange</li>
+          <li>Depositary: Citibank N.A. (since 2021)</li>
+          <li>Listing: NYSE (SAN), Madrid (SAN)</li>
+          <li>Fixed ratio: ADS count fixed; dollar value of stock leg floats to closing</li>
+          <li>Fractional ADS: aggregated, sold, cash in lieu; Santander bears cost</li>
+          <li>Post-close option: ADS holders may exchange into ordinary shares at no charge</li>
+          <li>Registration: Form F-4, proxy statement and prospectus</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADS Exchange Window -->
+<section class="block sec-cream" id="ads-window">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="sec-index">07</div>
+      <div class="eyebrow">Corporate Actions: The Full Sequence</div>
+      <h2>ADS Delivery and the Post-Closing Exchange Window</h2>
+      <p>The stock consideration does not end with the initial delivery of Santander ADSs. The proxy statement notes that Webster holders may exchange their Santander ADSs for Santander ordinary shares at no charge during a specified period following closing, subject to applicable procedures and certifications. That post-closing election introduces a second processing path that most deal summaries omit entirely.<sup class="cite"><a href="https://www.stocktitan.net/sec-filings/SAN/424b3-banco-santander-s-a-prospectus-filed-pursuant-to-rule-424-b-3-eeae7f0a42d8.html" target="_blank" rel="noopener">10</a></sup></p>
+    </div>
+    <div class="accent-rule reveal"></div>
+    <div class="reveal">
+      <div class="seq-flow">
+        <div class="seq-step">
+          <div class="seq-num">01</div>
+          <div class="seq-body">
+            <div class="seq-title">Webster Common Share</div>
+            <p class="seq-text">The registered holder of a Webster Financial share at the record date. Starting point for the full processing sequence.</p>
+          </div>
+        </div>
+        <div class="seq-step">
+          <div class="seq-num">02</div>
+          <div class="seq-body">
+            <div class="seq-title">Reincorporation Merger into Webster Virginia</div>
+            <p class="seq-text">Webster Financial Corporation merges into a newly formed Virginia entity. Each Webster share converts into one Webster Virginia share. This step redomiciles the company under Virginia law to enable the share exchange that follows.</p>
+          </div>
+        </div>
+        <div class="seq-step">
+          <div class="seq-num">03</div>
+          <div class="seq-body">
+            <div class="seq-title">Statutory Share Exchange</div>
+            <p class="seq-text">Immediately following the reincorporation, Santander acquires all Webster Virginia shares in a statutory share exchange under Virginia law. Webster becomes a wholly owned Santander subsidiary.</p>
+          </div>
+        </div>
+        <div class="seq-step">
+          <div class="seq-num">04</div>
+          <div class="seq-body">
+            <div class="seq-title">$48.75 Cash + 2.0548 Santander ADSs Delivered</div>
+            <p class="seq-text">Each Webster share converts into $48.75 in cash and 2.0548 newly issued Santander American Depositary Shares, each representing one Santander ordinary share listed on the NYSE. The ADS ratio is fixed; the dollar value of the stock leg floats with Santander pricing from signing through closing, an explicitly noted risk factor in the proxy.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+          </div>
+        </div>
+        <div class="seq-step">
+          <div class="seq-num">05</div>
+          <div class="seq-body">
+            <div class="seq-title">Fractional ADS Entitlements: Aggregated, Sold, Cash In Lieu</div>
+            <p class="seq-text">Because 2.0548 is not a whole number, virtually every position produces a fractional ADS entitlement. The exchange agent aggregates all fractional interests, sells them in the open market, and distributes the net proceeds pro rata to entitled former Webster holders. Santander bears the cost of those sales. No fractional Santander ADSs are issued.<sup class="cite"><a href="https://www.stocktitan.net/sec-filings/SAN/424b3-banco-santander-s-a-prospectus-filed-pursuant-to-rule-424-b-3-eeae7f0a42d8.html" target="_blank" rel="noopener">10</a></sup></p>
+          </div>
+        </div>
+        <div class="seq-step last">
+          <div class="seq-num">06</div>
+          <div class="seq-body">
+            <div class="seq-title">Post-Closing ADS-to-Ordinary-Share Exchange Window</div>
+            <p class="seq-text">Following closing, Santander ADS holders may exchange their ADSs for Santander ordinary shares at no charge during a specified period, subject to procedures and certifications set out in the letter of transmittal. This optional step adds a second, post-event processing path: holders seeking direct ownership of the underlying Spanish-listed shares rather than the NYSE depositary receipt structure must navigate a separate election process. Absent any election, former Webster holders remain Santander ADS holders. Beneficial owners will follow the exchange procedures communicated by their brokers, custodians, or nominees.<sup class="cite"><a href="https://www.stocktitan.net/sec-filings/SAN/424b3-banco-santander-s-a-prospectus-filed-pursuant-to-rule-424-b-3-eeae7f0a42d8.html" target="_blank" rel="noopener">10</a></sup></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="ops-callout">
+        <div class="ops-label">Corporate Actions Operational Note</div>
+        <p>This is not a straightforward cash-and-stock merger. For custodians, brokers, and asset servicers, the event requires separate processing across four tracks: cash consideration delivery; ADS share consideration; cash-in-lieu for fractional ADS entitlements (cost borne by Santander); and the optional post-closing ADS-to-ordinary-share election process. Former Webster holders finish the transaction as holders of a Spanish bank ADS structure, not U.S. bank common stock, unless they subsequently elect to convert. The letter of transmittal contains the exchange instructions. Beneficial owners processing through intermediaries will need to follow the procedures their brokers or custodians communicate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="block sec-dark" id="timeline">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="sec-index">08</div>
+      <div class="eyebrow">Path to Close</div>
+      <h2>Deal Timeline</h2>
+      <p>From the pricing reference date through the expected second-half 2026 close. Completion remains subject to bank regulatory approvals in the United States and the European Union and to the approval of both companies' stockholders.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+    </div>
+    <div class="accent-rule reveal"></div>
+    <div class="timeline reveal">
+      <div class="tl-item done">
+        <div class="tl-date">February 2, 2026</div>
+        <h3>Pricing Reference Date</h3>
+        <p>Santander's closing price on this date sets the $75.59 implied per-share value and the aggregate of approximately $12.3 billion.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-date">February 3, 2026</div>
+        <h3>Definitive Agreement Announced</h3>
+        <p>Webster and Santander announce a signed definitive agreement, unanimously approved by Webster's board and the relevant Santander bodies, under which Webster becomes a wholly owned subsidiary of Santander. The deal is structured in two steps, a reincorporation merger followed by a statutory share exchange in which each Webster share converts into the cash and ADS consideration.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup><sup class="cite"><a href="https://www.stocktitan.net/sec-filings/SAN/424b3-banco-santander-s-a-prospectus-filed-pursuant-to-rule-424-b-3-eeae7f0a42d8.html" target="_blank" rel="noopener">10</a></sup></p>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-date">March 30, 2026</div>
+        <h3>Bank-Level Merger Agreement and OCC Filing</h3>
+        <p>Santander Holdings USA, Santander Bank N.A., and Webster Bank N.A. execute a bank-level Agreement and Plan of Merger, and a Bank Merger Act application is submitted to the OCC. The bank merger is conditioned on the closing of the holding company transactions and OCC approval.<sup class="cite"><a href="https://www.stocktitan.net/sec-filings/WBS/425-webster-financial-corp-business-combination-communication-c76271b33cdb.html" target="_blank" rel="noopener">7</a></sup></p>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-date">May 26, 2026</div>
+        <h3>Webster Stockholders Approve</h3>
+        <p>At a special meeting, Webster stockholders approved the transaction with 115,788,667 shares in favor and 1,279,203 against, with 72.3 percent of eligible shares represented. A separate advisory vote on deal-related executive compensation also passed, by a narrower margin. Regulatory approvals and other customary conditions remain outstanding.<sup class="cite"><a href="https://hartfordbusiness.com/article/webster-financial-shareholders-approve-santander-acquisition/" target="_blank" rel="noopener">8</a></sup><sup class="cite"><a href="https://www.stocktitan.net/sec-filings/WBS/8-k-webster-financial-corp-reports-material-event-8c81238728a7.html" target="_blank" rel="noopener">9</a></sup></p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Second Half 2026</div>
+        <h3>Expected Close</h3>
+        <p>Closing is expected in the second half of 2026, subject to remaining regulatory approvals, including those of the Federal Reserve Board and the European Central Bank. Both companies' stockholder approvals have been obtained. Closing remains targeted for the second half of 2026.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Leadership -->
+<section class="block sec-dark" id="leadership">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="sec-index">09</div>
+      <div class="eyebrow">Leadership</div>
+      <h2>Who Runs the Combined US Bank</h2>
+      <p>Webster's senior team moves into central roles in the combined organization. The executives who built Webster's key businesses will run the US bank. Red denotes Santander origin, blue denotes Webster.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+    </div>
+    <div class="accent-rule reveal"></div>
+    <div class="bio-grid reveal">
+
+      <div class="bio-card">
+        <div class="bio-portrait san">AB</div>
+        <div class="bio-info">
+          <span class="bio-tag san">Banco Santander</span>
+          <div class="bio-name"><a href="https://www.santander.com/en/shareholders-and-investors/corporate-governance/board-of-directors/mrs-anabotin-sanz-de-sautuola-y-o-shea" target="_blank" rel="noopener">Ana Botin</a></div>
+          <div class="bio-role">Executive Chair, Banco Santander</div>
+          <p class="bio-text">Executive Chair of Banco Santander since September 2014, the fourth generation of her family to lead the bank. She began her career at J.P. Morgan in New York, joined Santander in 1988, and ran the Group's Latin American expansion before serving as Chief Executive of Banesto and then CEO of Santander UK. She chairs the Institute of International Finance and sits on the board of The Coca-Cola Company.<sup class="cite"><a href="https://www.santander.com/en/shareholders-and-investors/corporate-governance/board-of-directors/mrs-anabotin-sanz-de-sautuola-y-o-shea" target="_blank" rel="noopener">16</a></sup></p>
+        </div>
+      </div>
+
+      <div class="bio-card">
+        <div class="bio-portrait san">CR</div>
+        <div class="bio-info">
+          <span class="bio-tag san">Santander</span>
+          <div class="bio-name"><a href="https://www.santanderus.com/team_member/christiana-riley/" target="_blank" rel="noopener">Christiana Riley</a></div>
+          <div class="bio-role">Country Head, US &middot; CEO, Santander Holdings USA</div>
+          <p class="bio-text">President and CEO of Santander US, leading the Group's businesses in the United States. She joined Santander in 2023 as Regional Head of North America after seventeen years at Deutsche Bank, where she sat on the Management Board and served as CEO of the Americas and as CFO and COO of the Corporate and Investment Bank. She holds a degree from Princeton and an MBA from London Business School.<sup class="cite"><a href="https://www.santanderus.com/team_member/christiana-riley/" target="_blank" rel="noopener">12</a></sup></p>
+        </div>
+      </div>
+
+      <div class="bio-card">
+        <div class="bio-portrait wbs">JC</div>
+        <div class="bio-info">
+          <span class="bio-tag wbs">Webster</span>
+          <div class="bio-name"><a href="https://www.websterbank.com/bankers/john-ciulla/" target="_blank" rel="noopener">John Ciulla</a></div>
+          <div class="bio-role">Incoming CEO, Santander Bank, N.A.</div>
+          <p class="bio-text">Chairman and CEO of Webster Financial, set to lead Santander Bank, N.A. He joined Webster in 2004, rose through middle-market and commercial banking, became chief executive in 2018, and steered the 2021 merger of equals with Sterling Bancorp that moved the company's headquarters to Stamford. Earlier he was a managing director at The Bank of New York and practiced law in New York.<sup class="cite"><a href="https://www.websterbank.com/bankers/john-ciulla/" target="_blank" rel="noopener">13</a></sup></p>
+        </div>
+      </div>
+
+      <div class="bio-card">
+        <div class="bio-portrait wbs">LM</div>
+        <div class="bio-info">
+          <span class="bio-tag wbs">Webster</span>
+          <div class="bio-name"><a href="https://www.websterbank.com/bankers/luis-massiani/" target="_blank" rel="noopener">Luis Massiani</a></div>
+          <div class="bio-role">Incoming COO, Santander US &middot; Integration lead</div>
+          <p class="bio-text">President and COO of Webster Financial, set to serve as Chief Operating Officer of Santander's US holding company and bank and to lead integration. He came to Webster through the Sterling Bancorp merger, where he had been chief operating officer and earlier chief financial officer, and before that worked in investment banking at Credit Suisse. He holds an MBA from Indiana University's Kelley School of Business.<sup class="cite"><a href="https://www.websterbank.com/bankers/luis-massiani/" target="_blank" rel="noopener">14</a></sup></p>
+        </div>
+      </div>
+
+      <div class="bio-card">
+        <div class="bio-portrait san">TR</div>
+        <div class="bio-info">
+          <span class="bio-tag san">Santander</span>
+          <div class="bio-name"><a href="https://www.santanderus.com/team_member/timothy-ryan/" target="_blank" rel="noopener">T. Timothy Ryan, Jr.</a></div>
+          <div class="bio-role">Chairman, Santander Holdings USA and Santander Bank, N.A.</div>
+          <p class="bio-text">Non-executive Chairman of Santander Holdings USA and Santander Bank, N.A. since 2014, continuing in the role after the deal. He was previously Vice Chairman for Regulatory Affairs at JPMorgan Chase, President and CEO of SIFMA, and Director of the Office of Thrift Supervision at the U.S. Treasury. He holds a law degree from American University.<sup class="cite"><a href="https://www.santanderus.com/team_member/timothy-ryan/" target="_blank" rel="noopener">15</a></sup></p>
+        </div>
+      </div>
+
+</div>
+    <p class="lead-note">Ciulla and Massiani, together with two further Webster directors, join the boards of Santander Holdings USA and Santander Bank, N.A. Webster's Stamford, Connecticut headquarters becomes a core Santander corporate office alongside existing offices in Boston, New York, Miami, and Dallas.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup></p>
+  </div>
+</section>
+
+<!-- Advisors -->
+<section class="block sec-cream" id="advisors">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Advisors</div>
+      <h2>Deal Advisors</h2>
+    </div>
+    <div class="accent-rule reveal"></div>
+    <p class="adv-group-label reveal">Webster's Advisors</p>
+    <div class="adv-grid reveal">
+      <div class="adv">
+        <div class="af">J.P. Morgan Securities LLC</div>
+        <div class="ar">Lead Financial Advisor</div>
+        <div class="as">Rendered a fairness opinion to Webster's board.</div>
+      </div>
+      <div class="adv">
+        <div class="af">Piper Sandler &amp; Co.</div>
+        <div class="ar">Financial Advisor</div>
+        <div class="as">Served as financial advisor to Webster.</div>
+      </div>
+      <div class="adv">
+        <div class="af">Wachtell, Lipton, Rosen &amp; Katz</div>
+        <div class="ar">Legal Advisor</div>
+        <div class="as">Legal counsel to Webster.</div>
+      </div>
+    </div>
+    <p class="adv-group-label second reveal">Santander's Advisors</p>
+    <div class="adv-grid reveal">
+      <div class="adv">
+        <div class="af">Centerview &middot; Goldman Sachs &middot; BofA Europe DAC</div>
+        <div class="ar">Financial Advisers</div>
+        <div class="as">Centerview Partners, Goldman Sachs, and Bank of America Europe DAC advised Santander.</div>
+      </div>
+      <div class="adv">
+        <div class="af">Davis Polk &amp; Wardwell LLP</div>
+        <div class="ar">U.S. Legal Adviser</div>
+        <div class="as">U.S. legal counsel to Santander.</div>
+      </div>
+      <div class="adv">
+        <div class="af">Uria Menendez</div>
+        <div class="ar">Spanish Legal Adviser</div>
+        <div class="as">Spanish legal counsel to Santander.</div>
+      </div>
+    </div>
+    <p class="adv-note">Advisory roles reflect the parties' announcements.<sup class="cite"><a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">1</a></sup><sup class="cite"><a href="https://www.santander.com/en/press-room/press-releases/2026/02/santander-acquires-webster-bank" target="_blank" rel="noopener">2</a></sup></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h3>Sources</h3>
+    <ul class="sources">
+      <li id="s1"><span class="num">1</span><span>Webster Financial Corporation, Form 8-K and accompanying press release, filed February 3, 2026. U.S. Securities and Exchange Commission, EDGAR. <a href="https://www.sec.gov/Archives/edgar/data/801337/000119312526035902/d101831dex991.htm" target="_blank" rel="noopener">sec.gov</a></span></li>
+      <li id="s2"><span class="num">2</span><span>Banco Santander, press release on the Webster acquisition, February 2026. <a href="https://www.santander.com/en/press-room/press-releases/2026/02/santander-acquires-webster-bank" target="_blank" rel="noopener">santander.com</a></span></li>
+            <li id="s3"><span class="num">3</span><span>Webster Financial Corporation and Banco Santander, S.A., Definitive Proxy Statement (Schedule DEFM14A), filed with the U.S. Securities and Exchange Commission, 2026. Primary disclosure document covering financial projections, synergy targets, transaction mechanics, and board approval process. <a href="https://www.sec.gov/Archives/edgar/data/0000801337/000114036126016415/ny20070640x1_defm14a.htm" target="_blank" rel="noopener">sec.gov</a></span></li>
+            <li id="s4"><span class="num">4</span><span>Banco Santander, S.A., Form 425 investor overview of the Webster Financial acquisition, filed with the U.S. Securities and Exchange Commission, February 2026. Single-page transaction summary including strategic rationale, financial terms, and key metrics. <a href="https://www.sec.gov/Archives/edgar/data/0000801337/000095010326001584/dp241066_425-onepager.htm" target="_blank" rel="noopener">sec.gov</a></span></li>
+      <li id="s5"><span class="num">5</span><span>Citi, "Citi Appointed as Successor Depositary Bank for Banco Santander S.A.'s ADR Programme," Business Wire, September 23, 2021. <a href="https://www.businesswire.com/news/home/20210923005357/en/Citi-Appointed-as-Successor-Depositary-Bank-for-Banco-Santander-S.A.%E2%80%99s-ADR-Programme" target="_blank" rel="noopener">businesswire.com</a></span></li>
+      <li id="s6"><span class="num">6</span><span>Banco Santander, Shareholders and Investors, General Information. <a href="https://www.santander.com/en/shareholders-and-investors/general-information" target="_blank" rel="noopener">santander.com</a></span></li>
+      <li id="s7"><span class="num">7</span><span>Webster Financial Corporation, Form 425 disclosure of bank-level Agreement and Plan of Merger and OCC Bank Merger Act application, dated March 30, 2026. <a href="https://www.stocktitan.net/sec-filings/WBS/425-webster-financial-corp-business-combination-communication-c76271b33cdb.html" target="_blank" rel="noopener">SEC filing summary</a></span></li>
+      <li id="s8"><span class="num">8</span><span>Hartford Business Journal, "Webster Financial shareholders approve Santander acquisition," May 2026. <a href="https://hartfordbusiness.com/article/webster-financial-shareholders-approve-santander-acquisition/" target="_blank" rel="noopener">hartfordbusiness.com</a></span></li>
+      <li id="s9"><span class="num">9</span><span>Webster Financial Corporation, Form 8-K reporting special meeting voting results, filed May 2026 (115,788,667 for; 1,279,203 against; 192,086 abstentions; 72.3% of 162,048,996 eligible shares represented). <a href="https://www.stocktitan.net/sec-filings/WBS/8-k-webster-financial-corp-reports-material-event-8c81238728a7.html" target="_blank" rel="noopener">SEC filing summary</a></span></li>
+      <li id="s10"><span class="num">10</span><span>Banco Santander, S.A., Rule 424(b)(3) prospectus, filed April 2026 (two-step reincorporation and share exchange; Federal Reserve and ECB approvals; May 26, 2026 special meeting). <a href="https://www.stocktitan.net/sec-filings/SAN/424b3-banco-santander-s-a-prospectus-filed-pursuant-to-rule-424-b-3-eeae7f0a42d8.html" target="_blank" rel="noopener">SEC filing summary</a></span></li>
+      <li id="s11"><span class="num">11</span><span>MX, "Largest U.S. Banks by Total Domestic Deposits," using FDIC reported data as of March 31, 2025. <a href="https://www.mx.com/blog/biggest-us-banks-by-deposits/" target="_blank" rel="noopener">mx.com</a></span></li>
+      <li id="s12"><span class="num">12</span><span>Santander US, leadership profile, Christiana Riley. <a href="https://www.santanderus.com/team_member/christiana-riley/" target="_blank" rel="noopener">santanderus.com</a></span></li>
+      <li id="s13"><span class="num">13</span><span>Webster Bank, banker profile, John R. Ciulla. <a href="https://www.websterbank.com/bankers/john-ciulla/" target="_blank" rel="noopener">websterbank.com</a></span></li>
+      <li id="s14"><span class="num">14</span><span>Webster Bank, banker profile, Luis Massiani. <a href="https://www.websterbank.com/bankers/luis-massiani/" target="_blank" rel="noopener">websterbank.com</a></span></li>
+      <li id="s15"><span class="num">15</span><span>Santander US, leadership profile, T. Timothy Ryan, Jr. <a href="https://www.santanderus.com/team_member/timothy-ryan/" target="_blank" rel="noopener">santanderus.com</a></span></li>
+      <li id="s16"><span class="num">16</span><span>Banco Santander, board of directors profile, Ana Botin-Sanz de Sautuola y O'Shea. <a href="https://www.santander.com/en/shareholders-and-investors/corporate-governance/board-of-directors/mrs-anabotin-sanz-de-sautuola-y-o-shea" target="_blank" rel="noopener">santander.com</a></span></li>
+      <li id="s17"><span class="num">17</span><span>Certified resolution of the General Shareholders' Meeting of Banco Santander, S.A., validly held March 27, 2026, approving the capital increase for the Webster acquisition; filed as a Form 425 with the SEC by Webster Financial Corporation. <a href="https://www.sec.gov/Archives/edgar/data/801337/000095010326004736/dp244138_425.htm" target="_blank" rel="noopener">sec.gov</a></span></li>
+      <li id="s18"><span class="num">18</span><span>FDIC BankFind Suite, Summary of Deposits, branch-office deposit data as of June 30, 2025. Santander Bank, N.A. (Certificate 29950) and Webster Bank, National Association (Certificate 18221). <a href="https://banks.data.fdic.gov/bankfind-suite/SOD/branchOffice" target="_blank" rel="noopener">banks.data.fdic.gov</a></span></li>
+    </ul>
+    <p class="disclaimer">This page is an independent editorial brief prepared for educational and informational purposes. It is not investment advice, legal advice, an offer to sell, or a solicitation of an offer to buy any security or to solicit any vote or approval. Transaction figures are stated as of the dates indicated and reflect the parties' announcements and reputable public reporting. Forward-looking metrics, including cost synergies, earnings accretion, and return on invested capital, are management projections that are inherently uncertain. The aggregate transaction value is cited as $12.3 billion per Webster's SEC filing; Santander's own release framed it as $12.2 billion, a difference attributable to rounding and reference timing. Investors should rely on the definitive Form F-4 registration statement and the joint proxy statement and prospectus.</p>
+    <div style="font-family:var(--mono);font-size:11px;color:rgba(245,241,234,0.38);margin-bottom:18px;letter-spacing:0.04em">Last updated: May 30, 2026</div>
+    <div class="colophon">
+      <div class="by">Compiled by Ted Nawrocki &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/tednawrockinyc/" target="_blank" rel="noopener">linkedin.com/in/tednawrockinyc</a></div>
+      <div class="tag">Corporate Actions &middot; M&amp;A</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  document.documentElement.classList.add("js");
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function initReveal() {
+    var els = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      els.forEach(function (el) { el.classList.add("is-visible"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    els.forEach(function (el) { io.observe(el); });
+    window.setTimeout(function () {
+      els.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight) { el.classList.add("is-visible"); }
+      });
+    }, 700);
+  }
+
+  function runCount(el) {
+    var to = parseFloat(el.getAttribute("data-count-to"));
+    var dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
+    var pre = el.getAttribute("data-prefix") || "";
+    var suf = el.getAttribute("data-suffix") || "";
+    if (isNaN(to)) { return; }
+    if (reduceMotion) { el.textContent = pre + to.toFixed(dec) + suf; return; }
+    var dur = 1500;
+    var start = null;
+    function frame(ts) {
+      if (start === null) { start = ts; }
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + (to * eased).toFixed(dec) + suf;
+      if (p < 1) { window.requestAnimationFrame(frame); }
+      else { el.textContent = pre + to.toFixed(dec) + suf; }
+    }
+    window.requestAnimationFrame(frame);
+  }
+
+  function initCounts() {
+    var counts = Array.prototype.slice.call(document.querySelectorAll(".count"));
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      counts.forEach(runCount);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { runCount(entry.target); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.5 });
+    counts.forEach(function (el) { io.observe(el); });
+  }
+
+  function initConsid() {
+    var bar = document.getElementById("considBar");
+    var readout = document.getElementById("considReadout");
+    if (!bar || !readout) { return; }
+    var segs = bar.querySelectorAll(".consid-seg");
+    var legs = document.querySelectorAll(".leg-item");
+    var roK = readout.querySelector(".ro-k");
+    var roV = readout.querySelector(".ro-v");
+    var roD = readout.querySelector(".ro-d");
+
+    var data = {
+      cash: {
+        k: "Cash Component",
+        v: '$48.75 <span style="font-size:16px;color:rgba(245,241,234,0.6)">per share</span>',
+        d: "A fixed cash amount, 64.5% of the $75.59 consideration at the announcement reference price. This portion does not move with markets."
+      },
+      stock: {
+        k: "Stock Component",
+        v: '2.0548 ADS <span style="font-size:16px;color:rgba(245,241,234,0.6)">&asymp; $26.84</span>',
+        d: "A fixed exchange ratio, 35.5% of the consideration at announcement. Its dollar value floats with Santander's ADS price, which was roughly $13.06 implied on February 2, 2026."
+      },
+      total: {
+        k: "Total Consideration",
+        v: '$75.59 <span style="font-size:16px;color:rgba(245,241,234,0.6)">per share</span>',
+        d: "Hover or tap a segment for the cash and stock detail. The cash amount is fixed; the stock leg is a fixed exchange ratio, so its dollar value moves with Santander's ADS price."
+      }
+    };
+
+    function show(key) {
+      var d = data[key] || data.total;
+      roK.innerHTML = d.k;
+      roV.innerHTML = d.v;
+      roD.innerHTML = d.d;
+      segs.forEach(function (s) {
+        if (key === "total") { s.classList.remove("dim"); }
+        else { s.classList.toggle("dim", s.getAttribute("data-seg") !== key); }
+      });
+    }
+
+    function bind(el, key) {
+      el.addEventListener("mouseenter", function () { show(key); });
+      el.addEventListener("click", function () { show(key); });
+      el.addEventListener("focus", function () { show(key); });
+    }
+    segs.forEach(function (s) { bind(s, s.getAttribute("data-seg")); s.setAttribute("tabindex", "0"); });
+    legs.forEach(function (l) { bind(l, l.getAttribute("data-leg")); l.setAttribute("tabindex", "0"); });
+    bar.addEventListener("mouseleave", function () { show("total"); });
+  }
+
+  function initQuotes() {
+    // Replace with your Finnhub API key to enable the live feed on deployment.
+    var FINNHUB_API_KEY = ""; // Key removed. Cards show announcement-day reference values.
+
+    var REFERENCE = {
+      SAN: { label: "Implied ADS (Feb 2, 2026)", value: 13.06 },
+      WBS: { label: "Agreed consideration", value: 75.59 }
+    };
+
+    function fmt(n) { return (Math.round(n * 100) / 100).toFixed(2); }
+
+    function setReference(cardId, sym) {
+      var card = document.getElementById(cardId);
+      if (!card) { return; }
+      var ref = REFERENCE[sym];
+      card.querySelector("[data-pricenum]").textContent = fmt(ref.value);
+      card.querySelector("[data-badge]").classList.remove("live");
+      card.querySelector("[data-badgetext]").textContent = "Reference";
+      card.querySelector("[data-chg]").innerHTML = "";
+      card.querySelector("[data-meta]").textContent = ref.label + " \u00b7 live quote unavailable";
+    }
+
+    function setLive(cardId, q) {
+      var card = document.getElementById(cardId);
+      if (!card) { return; }
+      card.querySelector("[data-pricenum]").textContent = fmt(q.c);
+      card.querySelector("[data-badge]").classList.add("live");
+      card.querySelector("[data-badgetext]").textContent = "Live";
+      var up = q.d >= 0;
+      var sign = up ? "+" : "";
+      var cls = up ? "up" : "down";
+      var arrow = up ? "\u25b2" : "\u25bc";
+      card.querySelector("[data-chg]").innerHTML =
+        '<span class="' + cls + '">' + arrow + " " + sign + fmt(q.d) + "</span>" +
+        '<span class="' + cls + '">' + sign + fmt(q.dp) + "%</span>";
+      card.querySelector("[data-meta]").textContent =
+        "Prev close $" + fmt(q.pc) + " \u00b7 as of " + new Date().toLocaleTimeString();
+    }
+
+    function load(sym, cardId) {
+      if (!FINNHUB_API_KEY || FINNHUB_API_KEY === "YOUR_FINNHUB_API_KEY") {
+        setReference(cardId, sym);
+        return;
+      }
+      var url = "https://finnhub.io/api/v1/quote?symbol=" + encodeURIComponent(sym) + "&token=" + encodeURIComponent(FINNHUB_API_KEY);
+      fetch(url)
+        .then(function (r) { if (!r.ok) { throw new Error("HTTP " + r.status); } return r.json(); })
+        .then(function (q) {
+          if (q && typeof q.c === "number" && q.c > 0) { setLive(cardId, q); }
+          else { setReference(cardId, sym); }
+        })
+        .catch(function () { setReference(cardId, sym); });
+    }
+
+    load("SAN", "t-san");
+    load("WBS", "t-wbs");
+  }
+
+  function initRankBars() {
+    var list = document.getElementById("rankList");
+    if (!list) { return; }
+    var bars = Array.prototype.slice.call(list.querySelectorAll(".rank-bar"));
+    function grow() { bars.forEach(function (b) { b.style.width = (b.getAttribute("data-w") || "0") + "%"; }); }
+    if (reduceMotion || !("IntersectionObserver" in window)) { grow(); return; }
+    var obs = new IntersectionObserver(function (entries, o) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { grow(); o.disconnect(); }
+      });
+    }, { threshold: 0.15 });
+    obs.observe(list);
+  }
+
+  function initMap() {
+    var box = document.getElementById("branchMap");
+    if (!box) { return; }
+    var svg = box.querySelector("svg");
+    var layer = document.getElementById("mapLayer");
+    var tip = box.querySelector(".map-tip");
+    if (!svg || !layer) { return; }
+
+    // Mercator projection constants matching SVG state boundaries
+    var MINX = -1.46037486, MAXY = 0.94348622, SC = 2283.348903, OFFX = 77.361399, OFFY = 26.0;
+    function project(lng, lat) {
+      var x = Math.PI / 180 * lng;
+      var y = Math.log(Math.tan(Math.PI / 4 + Math.PI / 180 * Math.max(Math.min(lat, 85), -85) / 2));
+      return [OFFX + (x - MINX) * SC, OFFY + (MAXY - y) * SC];
+    }
+    function depRadius(dep) {
+      if (!dep || dep <= 0) { return 3; }
+      return Math.max(2.5, Math.min(14, 2.5 + 2.875 * (Math.log10(dep + 1) - 3)));
+    }
+    function fmtDep(dep) {
+      if (!dep || dep <= 0) { return ""; }
+      if (dep >= 1000000) { return "$" + (dep / 1000000).toFixed(1) + "B"; }
+      if (dep >= 1000) { return "$" + (dep / 1000).toFixed(0) + "M"; }
+      return "$" + dep + "K";
+    }
+
+    var sanGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    sanGroup.setAttribute("class", "branches-san");
+    var wbsGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    wbsGroup.setAttribute("class", "branches-wbs");
+    var staticPins = layer.querySelector(".pins");
+    if (staticPins) {
+      layer.insertBefore(sanGroup, staticPins);
+      layer.insertBefore(wbsGroup, staticPins);
+    } else {
+      layer.appendChild(sanGroup);
+      layer.appendChild(wbsGroup);
+    }
+
+    function showTip(el, name, city, st, dep) {
+      if (!tip) { return; }
+      var depStr = dep ? " &middot; " + fmtDep(dep) : "";
+      tip.innerHTML = "<span class='tt'>" + name + "</span>" + city + ", " + st + depStr;
+      var br = el.getBoundingClientRect(), bb = box.getBoundingClientRect();
+      tip.style.left = (br.left - bb.left + br.width / 2) + "px";
+      tip.style.top = (br.top - bb.top) + "px";
+      tip.classList.add("show");
+    }
+    function hideTip() { if (tip) { tip.classList.remove("show"); } }
+
+    function addPin(grp, px, py, r, name, city, st, dep) {
+      var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.setAttribute("class", "mappin");
+      g.setAttribute("tabindex", "0");
+      var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      c.setAttribute("cx", px.toFixed(1));
+      c.setAttribute("cy", py.toFixed(1));
+      c.setAttribute("r", r.toFixed(1));
+      var t = document.createElementNS("http://www.w3.org/2000/svg", "title");
+      t.textContent = name + " " + city + ", " + st + (dep ? " " + fmtDep(dep) : "");
+      g.appendChild(c);
+      g.appendChild(t);
+      g.addEventListener("mouseenter", function () { showTip(c, name, city, st, dep); });
+      g.addEventListener("mouseleave", hideTip);
+      g.addEventListener("focus", function () { showTip(c, name, city, st, dep); });
+      g.addEventListener("blur", hideTip);
+      grp.appendChild(g);
+    }
+
+    var btns = Array.prototype.slice.call(box.querySelectorAll(".mt-btn"));
+    function toggleBanks(which) {
+      sanGroup.style.display = (which === "wbs") ? "none" : "";
+      wbsGroup.style.display = (which === "san") ? "none" : "";
+      btns.forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-bank") === which); });
+    }
+    btns.forEach(function (b) { b.addEventListener("click", function () { toggleBanks(b.getAttribute("data-bank")); }); });
+
+    var loading = document.getElementById("mapLoading");
+    function loadBranches(cert, grp) {
+      var url = "https://banks.data.fdic.gov/api/sod" +
+        "?filters=CERT%3A" + cert + "%20AND%20YEAR%3A2025" +
+        "&fields=NAMEFULL%2CCITYBR%2CSTALPBR%2CDEPSUMBR%2CLATITUDE%2CLONGITUDE" +
+        "&limit=500&offset=0&sort_by=DEPSUMBR&sort_order=ASC&format=json";
+      return fetch(url)
+        .then(function (resp) { return resp.json(); })
+        .then(function (d) {
+          var items = d.data || [];
+          items.forEach(function (item) {
+            var b = item.data;
+            if (!b) { return; }
+            var lat = parseFloat(b.LATITUDE), lng = parseFloat(b.LONGITUDE);
+            if (!lat || !lng || isNaN(lat) || isNaN(lng)) { return; }
+            var pos = project(lng, lat);
+            if (pos[0] < -20 || pos[0] > 840 || pos[1] < -20 || pos[1] > 660) { return; }
+            var dep = parseFloat(b.DEPSUMBR) || 0;
+            addPin(grp, pos[0], pos[1], depRadius(dep), b.NAMEFULL || "Branch", b.CITYBR || "", b.STALPBR || "", dep);
+          });
+        });
+    }
+
+    Promise.all([loadBranches(29950, sanGroup), loadBranches(18221, wbsGroup)])
+      .then(function () {
+        if (loading) { loading.style.display = "none"; }
+        var sp = layer.querySelector(".pins");
+        if (sp) { layer.removeChild(sp); }
+      })
+      .catch(function () {
+        if (loading) {
+          var lt = loading.querySelector(".ml-text");
+          if (lt) { lt.textContent = "Branch data unavailable. Showing representative markers."; }
+          setTimeout(function () { if (loading) { loading.style.display = "none"; } }, 4000);
+        }
+      });
+
+    var scale = 1, tx = 0, ty = 0, CX = 410, CY = 320;
+    function apply() { layer.setAttribute("transform", "translate(" + tx + " " + ty + ") scale(" + scale + ")"); }
+    function zoom(f) {
+      var ns = Math.min(7, Math.max(1, scale * f));
+      if (ns === scale) { return; }
+      tx = CX - (CX - tx) * (ns / scale);
+      ty = CY - (CY - ty) * (ns / scale);
+      scale = ns;
+      if (scale === 1) { tx = 0; ty = 0; }
+      apply();
+    }
+    function reset() { scale = 1; tx = 0; ty = 0; apply(); }
+    var zin = box.querySelector("[data-zin]"), zout = box.querySelector("[data-zout]"), zr = box.querySelector("[data-zreset]");
+    if (zin) { zin.addEventListener("click", function () { zoom(1.45); }); }
+    if (zout) { zout.addEventListener("click", function () { zoom(1 / 1.45); }); }
+    if (zr) { zr.addEventListener("click", reset); }
+    var dragging = false, dx = 0, dy = 0, tx0 = 0, ty0 = 0;
+    function unitFactor() {
+      var m = svg.getScreenCTM();
+      return (m && m.a) ? (1 / m.a) : (820 / (box.clientWidth || 820));
+    }
+    function onDown(e) {
+      dragging = true;
+      var p = e.touches ? e.touches[0] : e;
+      dx = p.clientX; dy = p.clientY; tx0 = tx; ty0 = ty;
+    }
+    function onMove(e) {
+      if (!dragging) { return; }
+      var p = e.touches ? e.touches[0] : e, k = unitFactor();
+      tx = tx0 + (p.clientX - dx) * k;
+      ty = ty0 + (p.clientY - dy) * k;
+      apply();
+    }
+    function onUp() { dragging = false; }
+    svg.addEventListener("mousedown", onDown);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    svg.addEventListener("touchstart", onDown, { passive: true });
+    svg.addEventListener("touchmove", function (e) { onMove(e); }, { passive: true });
+    svg.addEventListener("touchend", onUp);
+  }
+  function initBranchHistory() {
+    var chartWrap = document.getElementById("branchChart");
+    var tbody = document.getElementById("branchTableBody");
+    var loadEl = document.getElementById("branchLoading");
+    if (!chartWrap) { return; }
+
+    var years = [2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+
+    function fetchBank(cert) {
+      var url = "https://banks.data.fdic.gov/api/sod" +
+        "?filters=CERT%3A" + cert + "%20AND%20YEAR%3A%5B2016%20TO%202025%5D" +
+        "&fields=YEAR%2CCERT&limit=5000&offset=0&sort_by=YEAR&sort_order=ASC&format=json";
+      return fetch(url)
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          var counts = {};
+          (d.data || []).forEach(function (item) {
+            var y = item.data && item.data.YEAR;
+            if (y) { counts[y] = (counts[y] || 0) + 1; }
+          });
+          return years.map(function (y) { return counts[y] || 0; });
+        });
+    }
+
+    Promise.all([fetchBank(29950), fetchBank(18221)])
+      .then(function (results) {
+        var san = results[0], wbs = results[1];
+        if (loadEl) { loadEl.style.display = "none"; }
+
+        if (tbody) {
+          tbody.innerHTML = years.map(function (y, i) {
+            return "<tr><td>" + y + "</td><td>" + san[i] + "</td><td>" + wbs[i] + "</td></tr>";
+          }).join("");
+        }
+
+        var W = 780, H = 310, ML = 60, MR = 24, MT = 26, MB = 44;
+        var CW = W - ML - MR, CH = H - MT - MB;
+        var maxV = Math.ceil(Math.max.apply(null, san.concat(wbs)) / 100) * 100;
+        var TICKS = 5;
+
+        function xp(i) { return ML + i * CW / (years.length - 1); }
+        function yp(v) { return MT + CH - (v / maxV) * CH; }
+
+        var sv = [];
+        sv.push("<svg viewBox=\"0 0 " + W + " " + H + "\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;width:100%;height:100%;overflow:visible\">");
+
+        for (var t = 0; t <= TICKS; t++) {
+          var gv = (maxV / TICKS) * t, gy = yp(gv).toFixed(1);
+          sv.push("<line x1=\"" + ML + "\" y1=\"" + gy + "\" x2=\"" + (W - MR) + "\" y2=\"" + gy + "\" stroke=\"rgba(245,241,234,0.1)\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/>");
+          sv.push("<text x=\"" + (ML - 7) + "\" y=\"" + (parseFloat(gy) + 4).toFixed(1) + "\" text-anchor=\"end\" fill=\"rgba(245,241,234,0.42)\" font-family=\"IBM Plex Mono,monospace\" font-size=\"11\">" + Math.round(gv) + "</text>");
+        }
+
+        years.forEach(function (y, i) {
+          var x = xp(i).toFixed(1);
+          sv.push("<line x1=\"" + x + "\" y1=\"" + (MT + CH).toFixed(1) + "\" x2=\"" + x + "\" y2=\"" + (MT + CH + 5) + "\" stroke=\"rgba(245,241,234,0.22)\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/>");
+          sv.push("<text x=\"" + x + "\" y=\"" + (MT + CH + 18) + "\" text-anchor=\"middle\" fill=\"rgba(245,241,234,0.42)\" font-family=\"IBM Plex Mono,monospace\" font-size=\"11\">" + y + "</text>");
+        });
+
+        var sx = xp(6).toFixed(1);
+        sv.push("<line x1=\"" + sx + "\" y1=\"" + MT + "\" x2=\"" + sx + "\" y2=\"" + (MT + CH) + "\" stroke=\"rgba(91,155,213,0.5)\" stroke-width=\"1\" stroke-dasharray=\"4,3\" vector-effect=\"non-scaling-stroke\"/>");
+        sv.push("<text x=\"" + (parseFloat(sx) + 5) + "\" y=\"" + (MT + 13) + "\" fill=\"rgba(91,155,213,0.65)\" font-family=\"IBM Plex Mono,monospace\" font-size=\"9.5\">Sterling merger</text>");
+
+        var sanPts = san.map(function (v, i) { return xp(i).toFixed(1) + "," + yp(v).toFixed(1); }).join(" ");
+        var wbsPts = wbs.map(function (v, i) { return xp(i).toFixed(1) + "," + yp(v).toFixed(1); }).join(" ");
+        sv.push("<polyline points=\"" + sanPts + "\" fill=\"none\" stroke=\"#EC0000\" stroke-width=\"2.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>");
+        sv.push("<polyline points=\"" + wbsPts + "\" fill=\"none\" stroke=\"#5b9bd5\" stroke-width=\"2.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>");
+
+        san.forEach(function (v, i) {
+          var cx = xp(i).toFixed(1), cy = yp(v).toFixed(1);
+          sv.push("<g tabindex=\"0\"><circle cx=\"" + cx + "\" cy=\"" + cy + "\" r=\"4.5\" fill=\"#EC0000\" stroke=\"rgba(10,10,10,0.7)\" stroke-width=\"1.5\"/><title>" + years[i] + ": " + v + " Santander offices</title></g>");
+        });
+        wbs.forEach(function (v, i) {
+          var cx = xp(i).toFixed(1), cy = yp(v).toFixed(1);
+          sv.push("<g tabindex=\"0\"><circle cx=\"" + cx + "\" cy=\"" + cy + "\" r=\"4.5\" fill=\"#5b9bd5\" stroke=\"rgba(10,10,10,0.7)\" stroke-width=\"1.5\"/><title>" + years[i] + ": " + v + " Webster offices</title></g>");
+        });
+
+        sv.push("<circle cx=\"" + (ML + 10) + "\" cy=\"" + (H - 10) + "\" r=\"4\" fill=\"#EC0000\"/>");
+        sv.push("<text x=\"" + (ML + 20) + "\" y=\"" + (H - 6) + "\" fill=\"rgba(245,241,234,0.6)\" font-family=\"IBM Plex Mono,monospace\" font-size=\"11\">Santander Bank, N.A.</text>");
+        sv.push("<circle cx=\"" + (ML + 180) + "\" cy=\"" + (H - 10) + "\" r=\"4\" fill=\"#5b9bd5\"/>");
+        sv.push("<text x=\"" + (ML + 190) + "\" y=\"" + (H - 6) + "\" fill=\"rgba(245,241,234,0.6)\" font-family=\"IBM Plex Mono,monospace\" font-size=\"11\">Webster Bank, N.A.</text>");
+
+        sv.push("</svg>");
+        chartWrap.innerHTML = sv.join("");
+      })
+      .catch(function () {
+        if (loadEl) {
+          var lt = loadEl.querySelector(".ml-text");
+          if (lt) { lt.textContent = "Branch data unavailable. FDIC BankFind API required."; }
+        }
+      });
+  }
+
+  function init() {
+    initReveal();
+    initBranchHistory();
+    initCounts();
+    initConsid();
+    initRankBars();
+    initMap();
+    initQuotes();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
