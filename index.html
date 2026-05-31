@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -721,7 +722,8 @@
       <div class="bh-chart-title">Santander and Webster Branch Counts, 2016&ndash;2025</div>
       <div class="bh-chart-sub">FDIC Summary of Deposits &middot; all domestic offices &middot; June 30 annual snapshots</div>
       <div class="bh-chart-wrap" id="branchChart">
-        
+        <div class="bh-loading" id="branchLoading" style="display:none">
+          <div class="ml-spin"></div>
           <div class="ml-text">Loading FDIC branch data&hellip;</div>
         </div>
       </div>
@@ -735,16 +737,7 @@
             </tr>
           </thead>
           <tbody id="branchTableBody">
-            <tr><td>2016</td><td>674</td><td>175</td></tr>
-            <tr><td>2017</td><td>673</td><td>168</td></tr>
-            <tr><td>2018</td><td>635</td><td>164</td></tr>
-            <tr><td>2019</td><td>613</td><td>157</td></tr>
-            <tr><td>2020</td><td>581</td><td>157</td></tr>
-            <tr><td>2021</td><td>539</td><td>130</td></tr>
-            <tr><td>2022</td><td>482</td><td>204</td></tr>
-            <tr><td>2023</td><td>439</td><td>199</td></tr>
-            <tr><td>2024</td><td>364</td><td>196</td></tr>
-            <tr><td>2025</td><td>373</td><td>196</td></tr>
+            
           </tbody>
         </table>
         <p class="market-note" style="margin-top:14px">Source: FDIC Summary of Deposits, FDIC Certificate 29950 (Santander Bank, N.A.) and FDIC Certificate 18221 (Webster Bank, National Association). Branch counts include all FDIC-reported domestic office types. Santander's network reflects the rationalized successor to the former Sovereign Bank franchise acquired in 2009. Webster's 2022 increase reflects the completion of the Sterling Bancorp merger in January 2022. Data retrieved from the FDIC BankFind API and verified. Santander 2025 reflects current FDIC-reported domestic locations; SOD 2025 data was not yet available via the API at time of retrieval.<sup class="cite"><a href="https://banks.data.fdic.gov/bankfind-suite/SOD/branchOffice" target="_blank" rel="noopener">18</a></sup></p>
