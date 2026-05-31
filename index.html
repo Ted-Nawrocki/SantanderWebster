@@ -1399,12 +1399,38 @@
 
     var years = [2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
 
+    // Abort controller for timeout
+    function fetchWithTimeout(url, ms) {
+      var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) { ctrl.abort(); } }, ms);
+      var opts = ctrl ? { signal: ctrl.signal } : {};
+      return fetch(url, opts).then(function (r) {
+        clearTimeout(timer);
+        return r.json();
+      }).catch(function (e) {
+        clearTimeout(timer);
+        throw e;
+      });
+    }
+
+    function hideLoader(msg) {
+      if (loadEl) {
+        if (msg) {
+          var lt = loadEl.querySelector(".ml-text");
+          var sp = loadEl.querySelector(".ml-spin");
+          if (lt) { lt.textContent = msg; }
+          if (sp) { sp.style.display = "none"; }
+        } else {
+          loadEl.style.display = "none";
+        }
+      }
+    }
+
     function fetchBank(cert) {
       var url = "https://banks.data.fdic.gov/api/sod" +
         "?filters=CERT%3A" + cert + "%20AND%20YEAR%3A%5B2016%20TO%202025%5D" +
         "&fields=YEAR%2CCERT&limit=5000&offset=0&sort_by=YEAR&sort_order=ASC&format=json";
-      return fetch(url)
-        .then(function (r) { return r.json(); })
+      return fetchWithTimeout(url, 20000)
         .then(function (d) {
           var counts = {};
           (d.data || []).forEach(function (item) {
@@ -1415,35 +1441,37 @@
         });
     }
 
-    // If SOD returns 0 for a year, try the Locations API for the current count
     function fetchCurrentLocations(cert) {
       var url = "https://banks.data.fdic.gov/api/locations" +
         "?filters=CERT%3A" + cert + "&fields=CERT&limit=1&offset=0&format=json";
-      return fetch(url)
-        .then(function (r) { return r.json(); })
+      return fetchWithTimeout(url, 15000)
         .then(function (d) { return (d.meta && d.meta.total) ? +d.meta.total : null; })
         .catch(function () { return null; });
     }
+
+    // Safety net: if nothing completes in 35 seconds, show error and stop spinning
+    var safetyTimer = setTimeout(function () {
+      hideLoader("FDIC data unavailable. Try reloading on a live server.");
+    }, 35000);
 
     Promise.all([fetchBank(29950), fetchBank(18221)])
       .then(function (results) {
         var san = results[0], wbs = results[1];
 
-        // If Santander 2025 SOD is missing, fetch current count from Locations API
         var san2025Fix = (san[9] === 0)
           ? fetchCurrentLocations(29950)
           : Promise.resolve(null);
 
         return san2025Fix.then(function (locCount) {
+          clearTimeout(safetyTimer);
           if (locCount !== null && san[9] === 0) {
             san[9] = locCount;
           }
 
-          // Replace remaining zeros with null so chart shows a gap, not a false zero
           var sanClean = san.map(function (v) { return v === 0 ? null : v; });
           var wbsClean = wbs.map(function (v) { return v === 0 ? null : v; });
 
-          if (loadEl) { loadEl.style.display = "none"; }
+          hideLoader();
 
           if (tbody) {
             tbody.innerHTML = years.map(function (y, i) {
@@ -1456,6 +1484,7 @@
           var W = 780, H = 310, ML = 60, MR = 24, MT = 26, MB = 44;
           var CW = W - ML - MR, CH = H - MT - MB;
           var allVals = sanClean.concat(wbsClean).filter(function(v){ return v !== null; });
+          if (!allVals.length) { return; }
           var maxV = Math.ceil(Math.max.apply(null, allVals) / 100) * 100;
           var TICKS = 5;
 
@@ -1523,10 +1552,8 @@
         });
       })
       .catch(function () {
-        if (loadEl) {
-          var lt = loadEl.querySelector(".ml-text");
-          if (lt) { lt.textContent = "Branch data unavailable. FDIC BankFind API required."; }
-        }
+        clearTimeout(safetyTimer);
+        hideLoader("FDIC data unavailable. Chart loads on the deployed site.");
       });
   }
   function init() {
